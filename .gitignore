@@ -1,0 +1,4 @@
+config/settings.inc.php
+config/xml/*
+modules/gamification/data/*
+
