@@ -1,0 +1,13 @@
+Tisztelt {lastname} {firstname},
+ 
+A #{id_order} számú rendelésről
+ 
+A #{id_order} számú rendelés fizetésével kapcsolatosan problémák merültek fel. Kérjük vegye fel a kapcsolatot az üzemeltetővel.
+ 
+Az Ön rendelését a helyzet rendezéséig nem tudjuk teljesíteni.
+ 
+További információ a rendelésről és számla letölthető a "Rendelés története " szekcióban a "Fiókom" menüpontban olvashat a weboldalunkon.
+
+Ha vendégként fizettél,  akkor a "Vendég Vásárlás Történet" szekcióban nyomonkövetheted. {guest_tracking_url}
+ 
+{shop_name} webáruház motorja a PrestaShop™

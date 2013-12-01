@@ -1,0 +1,10 @@
+Tisztelt {firstname} {lastname},
+ 
+A #{id_order} számú rendelésről
+ 
+A #{id_order} számú rendeléssel kapcsolatosan tájékoztatjuk, hogy kuponja érkezett.
+ 
+A kupon kódja a következő: {voucher_num}, melynek összege {voucher_amount}.
+A kedvezményre jogosító kupont másolja ki és adja hozzá a megrendeléshez.
+ 
+{shop_name} webáruház motorja a PrestaShop™

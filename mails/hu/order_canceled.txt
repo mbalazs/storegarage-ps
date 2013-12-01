@@ -1,0 +1,9 @@
+Tisztelt {firstname} {lastname},
+ 
+A rendelés adatai : #{id_order}
+ 
+A rendelést töröltük.
+ 
+A rendeléssel kapcsolatosan további információ a "Rendelés történet" szekcióban a "Fiókom" menüpontban a weboldalon.
+ 
+{shop_name} webáruház motorja a PrestaShop™

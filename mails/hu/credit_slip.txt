@@ -1,0 +1,12 @@
+﻿Tisztelt {lastname} {firstname} !
+ 
+A(z) #{id_order} rendelése alapján elkészítettünk önnek egy utalványt. 
+
+Az utalvány megtekinthető és a számla letölthető a  "Rendelés követése" szekcióban a "Fiókom" menüponton belül a weboldalon.
+ 
+A {shop_name}.
+
+{shop_name} - {shop_url}
+
+
+{shop_url} webáruház motorja a PrestaShop™

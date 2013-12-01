@@ -1,0 +1,35 @@
+﻿	Tisztelt {firstname} {lastname}, a {shop_name} köszöni megrendelését!
+		
+	Rendelési adatok
+
+	Rendelés: {order_name} dátuma{date}
+	Fizetés: {payment}
+	
+	Termék(ek): {total_products}
+	Kedvezmény(ek): {total_discounts}
+	Szállítás: {total_shipping}
+	Ajándék csomagolás: {total_wrapping}
+	Számla végösszege: {total_paid}
+	
+	
+	Szállítás
+		
+	Szállító: {carrier}
+	
+	Szálítási cím:
+	{delivery_firstname} {delivery_lastname}
+	{delivery_address1}
+	{delivery_address2}
+	{delivery_postal_code} {delivery_city}
+	{delivery_country} {delivery state}
+	
+	Számlázási cím:
+	{invoice_firstname} {invoice_lastname}
+	{invoice_address1}
+	{invoice_address2}
+	{invoice_postal_code} {invoice_city}
+	{invoice_country} {invoice state}
+		
+A rendelés teljesítéséhez kinyomtatható a számla a "Rendelés történet" szekcióban a "Fiókom" menüpontban a weboldalon.
+ 
+{shop_url} webáruház motorja a PrestaShop™

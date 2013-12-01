@@ -1,0 +1,11 @@
+Tisztelt {firstname} {lastname},
+ 
+A #{id_order} megrendelésről - Feldolgozás
+ 
+Rendszerünk fogadta a megrendelését .
+ 
+További információk a megrendelésről a "Rendelés története " szekcióban a "Fiókom" menüpontban olvashat a weboldalunkon.
+
+Ha vendégként fizettél,  akkor a "Vendég Vásárlás Történet" szekcióban nyomonkövetheted. {guest_tracking_url}
+ 
+{shop_name} webáruház motorja a PrestaShop™

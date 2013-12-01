@@ -1,0 +1,15 @@
+Tisztelt {firstname} {lastname}!
+
+A rendelést postáztuk.
+
+Hamarosan egy e-mailt küldünk, amelyen ellenőrizheted, hogy hol tart a csomagod.
+
+A számlát és a rendelést a "Rendelés története" menüpont alatt ellenőrizheted.
+
+Köszönjük a vásárlást!
+
+{shop_name} - {shop_url}
+
+
+
+{shop_url} webáruház motorja a PrestaShop™

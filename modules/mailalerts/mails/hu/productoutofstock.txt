@@ -1,0 +1,9 @@
+Hello,
+
+A {product} készlet hamarosan elfogy.
+A megmaradt készlet kevesebb mint a minimum: {last_qty}.
+Maradék készlet: {qty}
+
+Javasolt a termék adatait ellenőrízni ill a készletet feltölteni.
+
+{shop_url} webáruház motorja a PrestaShop™

@@ -1,0 +1,11 @@
+Tisztelt {firstname} {lastname}, üdvözli Önt a {shop_name}.
+ 
+A letöltendő termékek
+ 
+Ön a következő termék(ek)et töltötte le {nbProducts}.
+ 
+Ez a link közvetlenül ehez a termékhez vezet: {virtualProducts}
+ 
+Amennyiben szeretné megnézni rendelését és áttekinteni a számlát az a "Rendelés történet" szekcióban a "Fiókom" menüpontban találja meg..
+ 
+{shop_url} webáruház motorja a PrestaShop™

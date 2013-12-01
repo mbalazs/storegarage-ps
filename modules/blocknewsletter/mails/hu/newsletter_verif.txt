@@ -1,0 +1,6 @@
+Hello,
+
+Köszönjük, hogy feliratkoztál hírlevelünkre, kélek erősítsd meg szándékodat az alábbi linkre kattintva:
+{verif_url}
+
+{shop_url} webáruház motorja a PrestaShop™

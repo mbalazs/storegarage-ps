@@ -1,0 +1,9 @@
+Tisztelt {firstname} {lastname},
+ 
+A #{id_order} megrendelésről
+ 
+A rendeléssel kapcsolatos fizetés teljesítése megtörtént .
+ 
+További információ a rendelésről és számla letölthető a "Rendelés története " szekcióban a "Fiókom" menüpontban olvashat a weboldalunkon.
+ 
+{shop_name} webáruház motorja a PrestaShop™

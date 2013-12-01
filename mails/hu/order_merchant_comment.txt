@@ -1,0 +1,10 @@
+{shop_name} üzenete
+
+Tisztelt {firstname} {lastname}!
+
+Új üzenet érkezett a #{id_order} számú rendeléssel kapcsolatban:
+{message}
+
+
+
+{shop_url} webáruház motorja a PrestaShop™

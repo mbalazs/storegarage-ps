@@ -1,0 +1,20 @@
+Tisztelt {firstname} {lastname}!
+
+Köszönjük, hogy létrehoztad fiókodat a {shop_name} rendszerében.
+
+A bejelentkezési adataid a következők:
+
+E-mail cím: {email}
+Jelszó: {passwd}
+ 
+Most már rendelhetsz a webáruházunkon keresztül: {shop_url}
+
+Biztonsági tanácsok:
+
+* Az adataidat tárold másoktól elzártan.
+* Ne add meg másoknak a belépési adatokat.
+* Időközönként cseréld le a jelszavadat.
+* Ha arra gyanakszol, hogy valaki illetéktelenül használja a fiókodat, jelentsd nekünk.
+
+
+{shop_url} webáruház motorja a PrestaShop™

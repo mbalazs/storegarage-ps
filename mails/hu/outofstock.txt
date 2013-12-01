@@ -1,0 +1,11 @@
+Tisztelt {firstname} {lastname},
+ 
+A #{id_order} számú rendelésről
+ 
+
+Elnézését kérjük, de az Ön #{id_order} számú megrendelésében megnevezett termék kifogyott. Mindent megteszünk annak érdekében, hogy rendelését
+mielőbb teljesítsük. Az okozott kellemetlenségért és a várakozásért szíves elnézését kérjük.
+ 
+A rendeléssel és annak tartalmával kapcsolato információ a "Rendelés története" szekcióban a "Fiókom" menüpontban található weboldalunkon.
+ 
+{shop_url} webáruház motorja a PrestaShop™

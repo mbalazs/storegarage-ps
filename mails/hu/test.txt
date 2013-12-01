@@ -1,0 +1,5 @@
+Hello,
+
+Ez egy teszt email a {shop_name} webáruháztól.
+ 
+{shop_name} webáruház motorja a PrestaShop™

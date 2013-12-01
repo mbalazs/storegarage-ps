@@ -1,0 +1,7 @@
+A {shop_name} webáruház üzenete
+ 
+E-mail címe: {email}
+
+Üzenet: {message}
+ 
+{shop_url} webáruház motorja a PrestaShop™

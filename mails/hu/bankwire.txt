@@ -1,0 +1,24 @@
+Tisztelt {firstname} {lastname}!
+ 
+A rendelés száma #{id_order}
+ 
+A megrendelés azonnal teljesítésre kerül, amint az áru ellenértéke megérkezik áruházunkhoz.
+ 
+Az átutalás teljesítéséhez kérjük jegyezze meg a következő adatokat:
+
+{bankwire_owner}
+
+{bankwire_details}
+
+{bankwire_address}
+
+Rendelés összege: {total_paid}
+ 
+A rendelés teljesítéséhez kinyomtatható a számla a "Rendelés történet" szekcióban, a "Fiókom" menüpont alatt a weboldalon.
+ 
+{shop_name}.
+
+{shop_name} - {shop_url}
+
+
+{shop_url} webáruház motorja a PrestaShop™

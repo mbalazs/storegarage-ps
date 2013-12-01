@@ -1,0 +1,9 @@
+Üdvözletem,
+ 
+Az üzenet a {shop_name}webáruháztól érkezett.
+ 
+A #{id_order} rendeléssel kapcsolatosan üzenete érkezett:
+
+{message}
+ 
+{shop_url} webáruház motorja a PrestaShop™

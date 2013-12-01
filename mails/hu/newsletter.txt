@@ -1,0 +1,5 @@
+A {shop_name} hírlevele
+ 
+{message}
+ 
+{shop_url} webáruház motorja a PrestaShop™

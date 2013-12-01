@@ -1,0 +1,14 @@
+﻿Tisztelt {lastname} {firstname}!
+
+A megrendelése kiszállítás alatt.
+
+A kiszállítás folyamatát követni tudja a következő linkre kattintva: {followup}
+
+A rendelés teljesítéséhez kinyomtatható a számla a "Rendelés történet" szekcióban a "Fiókom" menüpontban a weboldalon.
+
+Köszönjük, hogy nálunk vásárolt - {shop_name}!
+
+{shop_name} - {shop_url}
+
+
+{shop_url} webáruház motorja a PrestaShop™

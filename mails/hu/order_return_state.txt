@@ -1,0 +1,11 @@
+Tisztelt {firstname} {lastname},
+ 
+A #{id_order_return} áru vissszaküldésről
+ 
+A visszaküldéssel kapcsolatos adatok "{state_order_return}".
+ 
+További információk a megrendelésről a "Rendelés története " szekcióban a "Fiókom"menüpontban olvashat a weboldalunkon.
+
+{shop_name} - {shop_url}
+ 
+{shop_name} webáruház motorja a PrestaShop™
