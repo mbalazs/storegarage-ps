@@ -2,3 +2,4 @@ Redmine integráció teszt
 Újabb teszt
 Mév egy teszt
 Negyedik
+Hello world!
