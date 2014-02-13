@@ -104,7 +104,7 @@ class AdminProductsControllerCore extends AdminController
 /* STOREGARAGE #46		'Pack' => 7,
 				'VirtualProduct' => 8, */
 				'Prices' => 1,
-/* STOREGARAGE #46				'Seo' => 2, */
+/* STOREGARAGE #46		'Seo' => 2, */
 				'Images' => 2,
 				'InventoryandVariants' => 3,
 				'Delivery' => 4,
