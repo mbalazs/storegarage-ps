@@ -387,6 +387,7 @@
 	</table>
 	<br />
 </div>
+<!-- STOREGARAGE #48 Start -->
 <div class="Associations">
 	<h4>{l s='Associations'}</h4>
 
@@ -480,3 +481,4 @@
 		</tr>
 	</table>
 </div>
+<!-- STOREGARAGE #48 Stop -->
