@@ -97,26 +97,26 @@ class AdminProductsControllerCore extends AdminController
 			
 		);
 
-/* #46		$this->available_tabs = array('Quantities' => 6, 'Warehouses' => 14); */
+/* STOREGARAGE #46		$this->available_tabs = array('Quantities' => 6, 'Warehouses' => 14); */
 		if ($this->context->shop->getContext() != Shop::CONTEXT_GROUP)
 			$this->available_tabs = array_merge($this->available_tabs, array(
 				'Informations' => 0,
-/* #46				'Pack' => 7, */
-/* #46				'VirtualProduct' => 8, */
+/* STOREGARAGE #46		'Pack' => 7,
+				'VirtualProduct' => 8, */
 				'Prices' => 1,
-/* #46				'Seo' => 2, */
+/* STOREGARAGE #46				'Seo' => 2, */
 				'Images' => 2,
 				'InventoryandVariants' => 3,
 				'Delivery' => 4,
 				'Seo' => 5,
-/* #46,48				'Associations' => 3, */
-/* #46				'Images' => 9, */
-/* #46				'Shipping' => 4, */
-/* #46				'Combinations' => 5, */
-/* #46				'Features' => 10, */
-/* #46				'Customization' => 11, */
-/* #46				'Attachments' => 12, */
-/* #46				'Suppliers' => 13, */
+/* STOREGARAGE #46		'Associations' => 3,
+				'Images' => 9,
+				'Shipping' => 4,
+				'Combinations' => 5,
+				'Features' => 10,
+				'Customization' => 11,
+				'Attachments' => 12,
+				'Suppliers' => 13, */
 			));
 
 		// Sort the tabs that need to be preloaded by their priority number
