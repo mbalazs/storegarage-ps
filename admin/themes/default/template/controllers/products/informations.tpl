@@ -99,7 +99,7 @@
 		<label class="radioCheck" for="simple_product">{l s='Product'}</label>
 		<input type="radio" name="type_product" {if $is_in_pack}disabled="disabled"{/if} id="pack_product" value="{Product::PTYPE_PACK}" {if $product_type == Product::PTYPE_PACK}checked="checked"{/if} />
 		<label class="radioCheck" for="pack_product">{l s='Pack'}</label>
-		<!-- #0047 input type="radio" name="type_product" id="virtual_product" {if $is_in_pack}disabled="disabled"{/if} value="{Product::PTYPE_VIRTUAL}" {if $product_type == Product::PTYPE_VIRTUAL}checked="checked"{/if} />
+	<!-- STOREGARAGE #47 input type="radio" name="type_product" id="virtual_product" {if $is_in_pack}disabled="disabled"{/if} value="{Product::PTYPE_VIRTUAL}" {if $product_type == Product::PTYPE_VIRTUAL}checked="checked"{/if} />
 		<label class="radioCheck" for="virtual_product">{l s='Virtual Product (services, booking or downloadable products)'}</label -->
 	</div>
 
@@ -131,7 +131,7 @@
 				<span class="hint" name="help_box">{l s='Special characters allowed:'}.-_#\<span class="hint-pointer">&nbsp;</span></span>
 			</td>
 		</tr>
-		<!-- #0049 tr>
+		<!-- STOREGARAGE #49 tr>
 			<td class="col-left"><label>{$bullet_common_field} {l s='EAN13 or JAN:'}</label></td>
 			<td style="padding-bottom:5px;">
 				<input size="55" maxlength="13" type="text" name="ean13" value="{$product->ean13|htmlentitiesUTF8}" style="width: 130px; margin-right: 5px;" /> <span class="small">{l s='(Europe, Japan)'}</span>
@@ -146,7 +146,7 @@
 	</table>
 	{* status informations *}
 	<table cellpadding="5" style="width: 40%; float: left; margin-left: 10px;">
-	<!-- #0049 tr>
+	<!-- STOREGARAGE #49 tr>
 		<td class="col-left">
 			{include file="controllers/products/multishop/checkbox.tpl" field="active" type="radio" onclick=""}
 			<label class="text">{l s='Status:'}</label>
@@ -164,7 +164,7 @@
 			</ul>
 		</td>
 	</tr -->
-	<!-- #0049 tr class="redirect_product_options" style="display:none">
+	<!-- STOREGARAGE #49 tr class="redirect_product_options" style="display:none">
 		<td class="col-left">
 			{include file="controllers/products/multishop/checkbox.tpl" field="redirect_type" type="radio" onclick=""}
 			<label class="text">{l s='Redirect:'}</label>
@@ -185,18 +185,18 @@
 	<tr class="redirect_product_options redirect_product_options_product_choise" style="display:none">
 		<td class="col-left">
 			{include file="controllers/products/multishop/checkbox.tpl" field="id_product_redirected" type="radio" onclick=""}
-			<!-- #0049 label class="text">{l s='Related product:'}</label -->
+			<!-- STOREGARAGE #49 label class="text">{l s='Related product:'}</label -->
 		</td>
 		<td style="padding-bottom:5px;">
 			<input type="hidden" value="" name="id_product_redirected" />
-			<!-- #0049 input value="" id="related_product_autocomplete_input" autocomplete="off" class="ac_input" / -->
+			<!-- STOREGARAGE #49 input value="" id="related_product_autocomplete_input" autocomplete="off" class="ac_input" / -->
 			<p>
 				<script>
 					var no_related_product = '{l s='No related product'}';
 					var id_product_redirected = {$product->id_product_redirected|intval};
 					var product_name_redirected = '{$product_name_redirected|escape:html:'UTF-8'}';
 				</script>
-				<!-- #0049 span id="related_product_name">{l s='No related product'}</span -->
+				<!-- STOREGARAGE #49 span id="related_product_name">{l s='No related product'}</span -->
 				<span id="related_product_remove" style="display:none">
 					<a hre="#" onclick="removeRelatedProduct(); return false" id="related_product_remove_link">
 						<img src="../img/admin/delete.gif" class="middle" alt="" />
@@ -205,7 +205,7 @@
 			</p>
 		</td>
 	</tr>
-	<!-- #0049 tr>
+	<!-- STOREGARAGE #49 tr>
 		<td class="col-left">
 			{include file="controllers/products/multishop/checkbox.tpl" field="visibility" type="default"}
 			<label>{l s='Visibility:'}</label>
@@ -219,7 +219,7 @@
 			</select>
 		</td>
 	</tr -->
-	<!-- #0049 tr id="product_options" {if !$product->active}style="display:none"{/if} >
+	<!-- STOREGARAGE #49 tr id="product_options" {if !$product->active}style="display:none"{/if} >
 		<td class="col-left">
 			{if isset($display_multishop_checkboxes) && $display_multishop_checkboxes}
 				<div class="multishop_product_checkbox">
@@ -250,7 +250,7 @@
 			</ul>
 		</td>
 	</tr -->
-	<!-- ##0049 tr>
+	<!-- STOREGARAGE #49 tr>
 		<td class="col-left">
 			{include file="controllers/products/multishop/checkbox.tpl" field="condition" type="default"}
 			<label>{l s='Condition:'}</label>
