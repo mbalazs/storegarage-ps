@@ -99,8 +99,8 @@
 		<label class="radioCheck" for="simple_product">{l s='Product'}</label>
 		<input type="radio" name="type_product" {if $is_in_pack}disabled="disabled"{/if} id="pack_product" value="{Product::PTYPE_PACK}" {if $product_type == Product::PTYPE_PACK}checked="checked"{/if} />
 		<label class="radioCheck" for="pack_product">{l s='Pack'}</label>
-		<input type="radio" name="type_product" id="virtual_product" {if $is_in_pack}disabled="disabled"{/if} value="{Product::PTYPE_VIRTUAL}" {if $product_type == Product::PTYPE_VIRTUAL}checked="checked"{/if} />
-		<label class="radioCheck" for="virtual_product">{l s='Virtual Product (services, booking or downloadable products)'}</label>
+		<!-- #0047 input type="radio" name="type_product" id="virtual_product" {if $is_in_pack}disabled="disabled"{/if} value="{Product::PTYPE_VIRTUAL}" {if $product_type == Product::PTYPE_VIRTUAL}checked="checked"{/if} />
+		<label class="radioCheck" for="virtual_product">{l s='Virtual Product (services, booking or downloadable products)'}</label -->
 	</div>
 
 	<div class="separation"></div>
@@ -131,7 +131,7 @@
 				<span class="hint" name="help_box">{l s='Special characters allowed:'}.-_#\<span class="hint-pointer">&nbsp;</span></span>
 			</td>
 		</tr>
-		<tr>
+		<!-- #0049 tr>
 			<td class="col-left"><label>{$bullet_common_field} {l s='EAN13 or JAN:'}</label></td>
 			<td style="padding-bottom:5px;">
 				<input size="55" maxlength="13" type="text" name="ean13" value="{$product->ean13|htmlentitiesUTF8}" style="width: 130px; margin-right: 5px;" /> <span class="small">{l s='(Europe, Japan)'}</span>
@@ -142,11 +142,11 @@
 			<td style="padding-bottom:5px;">
 				<input size="55" maxlength="12" type="text" name="upc" value="{$product->upc|escape:html:'UTF-8'}" style="width: 130px; margin-right: 5px;" /> <span class="small">{l s='(US, Canada)'}</span>
 			</td>
-		</tr>
+		</tr -->
 	</table>
 	{* status informations *}
 	<table cellpadding="5" style="width: 40%; float: left; margin-left: 10px;">
-	<tr>
+	<!-- #0049 tr>
 		<td class="col-left">
 			{include file="controllers/products/multishop/checkbox.tpl" field="active" type="radio" onclick=""}
 			<label class="text">{l s='Status:'}</label>
@@ -163,8 +163,8 @@
 				</li>
 			</ul>
 		</td>
-	</tr>
-	<tr class="redirect_product_options" style="display:none">
+	</tr -->
+	<!-- #0049 tr class="redirect_product_options" style="display:none">
 		<td class="col-left">
 			{include file="controllers/products/multishop/checkbox.tpl" field="redirect_type" type="radio" onclick=""}
 			<label class="text">{l s='Redirect:'}</label>
@@ -181,22 +181,22 @@
 				{l s='302 : Moved Temporarily = Product moved temporarily'}
 			</span>
 		</td>
-	</tr>
+	</tr -->
 	<tr class="redirect_product_options redirect_product_options_product_choise" style="display:none">
 		<td class="col-left">
 			{include file="controllers/products/multishop/checkbox.tpl" field="id_product_redirected" type="radio" onclick=""}
-			<label class="text">{l s='Related product:'}</label>
+			<!-- #0049 label class="text">{l s='Related product:'}</label -->
 		</td>
 		<td style="padding-bottom:5px;">
 			<input type="hidden" value="" name="id_product_redirected" />
-			<input value="" id="related_product_autocomplete_input" autocomplete="off" class="ac_input" />
+			<!-- #0049 input value="" id="related_product_autocomplete_input" autocomplete="off" class="ac_input" / -->
 			<p>
 				<script>
 					var no_related_product = '{l s='No related product'}';
 					var id_product_redirected = {$product->id_product_redirected|intval};
 					var product_name_redirected = '{$product_name_redirected|escape:html:'UTF-8'}';
 				</script>
-				<span id="related_product_name">{l s='No related product'}</span>
+				<!-- #0049 span id="related_product_name">{l s='No related product'}</span -->
 				<span id="related_product_remove" style="display:none">
 					<a hre="#" onclick="removeRelatedProduct(); return false" id="related_product_remove_link">
 						<img src="../img/admin/delete.gif" class="middle" alt="" />
@@ -205,7 +205,7 @@
 			</p>
 		</td>
 	</tr>
-	<tr>
+	<!-- #0049 tr>
 		<td class="col-left">
 			{include file="controllers/products/multishop/checkbox.tpl" field="visibility" type="default"}
 			<label>{l s='Visibility:'}</label>
@@ -218,8 +218,8 @@
 				<option value="none" {if $product->visibility == 'none'}selected="selected"{/if}>{l s='Nowhere'}</option>
 			</select>
 		</td>
-	</tr>
-	<tr id="product_options" {if !$product->active}style="display:none"{/if} >
+	</tr -->
+	<!-- #0049 tr id="product_options" {if !$product->active}style="display:none"{/if} >
 		<td class="col-left">
 			{if isset($display_multishop_checkboxes) && $display_multishop_checkboxes}
 				<div class="multishop_product_checkbox">
@@ -249,8 +249,8 @@
 			</li>
 			</ul>
 		</td>
-	</tr>
-	<tr>
+	</tr -->
+	<!-- ##0049 tr>
 		<td class="col-left">
 			{include file="controllers/products/multishop/checkbox.tpl" field="condition" type="default"}
 			<label>{l s='Condition:'}</label>
@@ -262,7 +262,7 @@
 				<option value="refurbished" {if $product->condition == 'refurbished'}selected="selected"{/if}>{l s='Refurbished'}</option>
 			</select>
 		</td>
-	</tr>
+	</tr -->
 </table>
 
 <table cellpadding="5" cellspacing="0" border="0" style="width: 100%;"><tr><td><div class="separation"></div></td></tr></table>
@@ -386,4 +386,97 @@
 		</table>
 	</table>
 	<br />
+</div>
+<div class="Associations">
+	<h4>{l s='Associations'}</h4>
+
+	{include file="controllers/products/multishop/check_fields.tpl" product_tab="Associations"}
+	<div class="separation"></div>
+		<div id="no_default_category" class="hint">
+		{l s='Please select a default category.'}
+	</div>
+	<table>
+		<tr>
+			<td class="col-left">
+				{include file="controllers/products/multishop/checkbox.tpl" field="category_box" type="category_box"}
+				<label for="category_block">{l s='Associated categories:'}</label>
+			</td>
+			<td class="col-right">
+				<div id="category_block">
+					{$category_tree}
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp;</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td class="col-right">
+					<a class="button bt-icon confirm_leave" href="{$link->getAdminLink('AdminCategories')|escape:'htmlall':'UTF-8'}&addcategory">
+						<img src="../img/admin/add.gif" alt="{l s='Create new category'}" title="{l s='Create new category'}" />
+						<span>{l s='Create new category'}</span>
+					</a>
+			</td>
+		</tr>
+		<tr>
+			<td class="col-left">
+				{include file="controllers/products/multishop/checkbox.tpl" field="id_category_default" type="default"}
+				<label for="id_category_default">{l s='Default category:'}</label>
+			</td>
+			<td class="col-right">
+				<select id="id_category_default" name="id_category_default">
+					{foreach from=$selected_cat item=cat}
+						<option value="{$cat.id_category}" {if $id_category_default == $cat.id_category}selected="selected"{/if} >{$cat.name}</option>
+					{/foreach}
+				</select>
+				<div class="hint" style="display:block;">{l s='The default category is the category displayed by default.'}</div>
+			</td>
+		</tr>
+	</table>
+<div class="separation"></div>
+	<table>
+		<tr>
+			<td class="col-left"><label>{l s='Accessories:'}</label></td>
+			<td style="padding-bottom:5px;">
+				<input type="hidden" name="inputAccessories" id="inputAccessories" value="{foreach from=$accessories item=accessory}{$accessory.id_product}-{/foreach}" />
+				<input type="hidden" name="nameAccessories" id="nameAccessories" value="{foreach from=$accessories item=accessory}{$accessory.name|escape:'htmlall':'UTF-8'}¤{/foreach}" />
+
+				<div id="ajax_choose_product">
+					<p style="clear:both;margin-top:0;">
+						<input type="text" value="" id="product_autocomplete_input" />
+						{l s='Begin typing the first letters of the product name, then select the product from the drop-down list.'}
+					</p>
+					<p class="preference_description">{l s='(Do not forget to save the product afterward)'}</p>
+					<!--<img onclick="$(this).prev().search();" style="cursor: pointer;" src="../img/admin/add.gif" alt="{l s='Add an accessory'}" title="{l s='Add an accessory'}" />-->
+				</div>
+				<div id="divAccessories">
+					{* @todo : donot use 3 foreach, but assign var *}
+					{foreach from=$accessories item=accessory}
+						{$accessory.name|escape:'htmlall':'UTF-8'}{if !empty($accessory.reference)}{$accessory.reference}{/if}
+						<span class="delAccessory" name="{$accessory.id_product}" style="cursor: pointer;">
+							<img src="../img/admin/delete.gif" class="middle" alt="" />
+						</span><br />
+					{/foreach}
+				</div>
+			</td>
+		</tr>
+		<tr>
+		<br />
+		<td class="col-left"><label>{l s='Manufacturer:'}</label></td>
+		<td style="padding-bottom:5px;">
+			<select name="id_manufacturer" id="id_manufacturer">
+				<option value="0">-- {l s='Choose (optional)'} --</option>
+				{if $product->id_manufacturer}
+				<option value="{$product->id_manufacturer}" selected="selected">{$product->manufacturer_name}</option>
+				{/if}
+				<option disabled="disabled">----------</option>
+			</select>&nbsp;&nbsp;&nbsp;
+			<a class="button bt-icon confirm_leave" style="margin-bottom:0" href="{$link->getAdminLink('AdminManufacturers')|escape:'htmlall':'UTF-8'}&addmanufacturer">
+				<img src="../img/admin/add.gif" alt="{l s='Create new manufacturer'}" title="{l s='Create new manufacturer'}" />
+				<span>{l s='Create new manufacturer'}</span>
+			</a>
+		</td>
+		</tr>
+	</table>
 </div>
