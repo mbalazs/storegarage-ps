@@ -262,7 +262,7 @@
 				<option value="refurbished" {if $product->condition == 'refurbished'}selected="selected"{/if}>{l s='Refurbished'}</option>
 			</select>
 		</td>
-	</tr -->
+	</tr  -->
 </table>
 
 <table cellpadding="5" cellspacing="0" border="0" style="width: 100%;"><tr><td><div class="separation"></div></td></tr></table>
