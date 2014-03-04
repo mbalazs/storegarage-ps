@@ -388,6 +388,7 @@
 	<br />
 </div>
 <!-- STOREGARAGE #48 Start -->
+<div id="ppackcontainer">
 <h4>{l s='Pack'}</h4>
 <div class="separation"></div>
 
@@ -436,9 +437,9 @@
 		</div>
 	</tr>
 </table>
+</div>
 
-
-
+<input type="hidden" name="submitted_tabs[]" value="Associations" />
 <div class="Associations">
 	<h4>{l s='Associations'}</h4>
 

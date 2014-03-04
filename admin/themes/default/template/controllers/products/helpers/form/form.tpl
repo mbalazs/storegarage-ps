@@ -108,6 +108,11 @@
 		{
 			$('#product-tab-content-wait').show();
 			//product_type = $("input[name=type_product]:checked").val();
+			
+			if($("#simple_product").is(":checked")) {
+				$('#ppackcontainer').hide();
+			}
+
 			if (product_type == product_type_pack)
 			{
 				$('li.tab-row a[id*="VirtualProduct"]').hide();
@@ -122,6 +127,14 @@
 				$('li.tab-row a[id*="Pack"]').hide();
 				$('li.tab-row a[id*="VirtualProduct"]').hide();
 			}
+
+			$('#simple_product').click(function() {
+					$('#ppackcontainer').hide();
+			});
+
+			$('#pack_product').click(function() {
+					$('#ppackcontainer').show();
+			});
 
 			$('#desc-product-newCombination').hide();
 
