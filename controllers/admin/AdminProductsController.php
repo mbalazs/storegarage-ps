@@ -109,14 +109,14 @@ class AdminProductsControllerCore extends AdminController
 				'InventoryandVariants' => 3,
 				'Delivery' => 4,
 				'Seo' => 5,
-/* STOREGARAGE #46		'Associations' => 3,
+/*'Associations' => 3,
 				'Images' => 9,
 				'Shipping' => 4,
 				'Combinations' => 5,
 				'Features' => 10,
 				'Customization' => 11,
 				'Attachments' => 12,
-				'Suppliers' => 13, */
+				'Suppliers' => 13,*/ 
 			));
 
 		// Sort the tabs that need to be preloaded by their priority number
@@ -1458,7 +1458,7 @@ class AdminProductsControllerCore extends AdminController
 		{
 			$this->display = 'edit';
 			$this->action = Tools::getValue('action');
-		}
+			}
 	}
 
 	public function ajaxProcessUpdateProductImageShopAsso()
@@ -1769,6 +1769,7 @@ class AdminProductsControllerCore extends AdminController
 
 	protected function isTabSubmitted($tab_name)
 	{
+	
 		if (!is_array($this->submitted_tabs))
 			$this->submitted_tabs = Tools::getValue('submitted_tabs');
 
@@ -1846,6 +1847,13 @@ class AdminProductsControllerCore extends AdminController
 					Logger::addLog(sprintf($this->l('%s edition'), $this->className), 1, null, $this->className, (int)$this->object->id, true, (int)$this->context->employee->id);
 					if (in_array($this->context->shop->getContext(), array(Shop::CONTEXT_SHOP, Shop::CONTEXT_ALL)))
 					{
+						if ($this->isTabSubmitted('Informations'))
+						{
+							$this->updateAccessories($object);
+							$this->processAttachments();
+							$this->updateAccessories($object);
+
+						}
 						if ($this->isTabSubmitted('Shipping'))
 							$this->addCarriers();
 						if ($this->isTabSubmitted('Associations'))
@@ -2899,6 +2907,7 @@ class AdminProductsControllerCore extends AdminController
 
 	public function initFormPrices($obj)
 	{
+	
 		$data = $this->createTemplate($this->tpl_form);
 		$product = $obj;
 		if ($obj->id)
@@ -3439,6 +3448,8 @@ class AdminProductsControllerCore extends AdminController
 
 	public function initFormInformations($product)
 	{
+
+		$this->initFormAssociations($product);
 		$data = $this->createTemplate($this->tpl_form);
 
 		$currency = $this->context->currency;
@@ -3520,7 +3531,63 @@ class AdminProductsControllerCore extends AdminController
 		$data->assign('link', $this->context->link);
 		$data->assign('PS_PRODUCT_SHORT_DESC_LIMIT', Configuration::get('PS_PRODUCT_SHORT_DESC_LIMIT') ? Configuration::get('PS_PRODUCT_SHORT_DESC_LIMIT') : 400);
 		$this->tpl_form_vars['product'] = $product;
+		
+		////////////////////////////
+		$root = Category::getRootCategory();
+		$default_category = $this->context->cookie->id_category_products_filter ? $this->context->cookie->id_category_products_filter : Context::getContext()->shop->id_category;
+		if (!$product->id || !$product->isAssociatedToShop())
+			$selected_cat = Category::getCategoryInformations(Tools::getValue('categoryBox', array($default_category)), $this->default_form_language);
+		else
+		{
+			if (Tools::isSubmit('categoryBox'))
+				$selected_cat = Category::getCategoryInformations(Tools::getValue('categoryBox', array($default_category)), $this->default_form_language);
+			else
+				$selected_cat = Product::getProductCategoriesFull($product->id, $this->default_form_language);
+		}
+
+		// Multishop block
+		$data->assign('feature_shop_active', Shop::isFeatureActive());
+		$helper = new HelperForm();
+		if ($this->object && $this->object->id)
+			$helper->id = $this->object->id;
+		else
+			$helper->id = null;
+		$helper->table = $this->table;
+		$helper->identifier = $this->identifier;
+
+		// Accessories block
+		$accessories = Product::getAccessoriesLight($this->context->language->id, $product->id);
+
+		if ($post_accessories = Tools::getValue('inputAccessories'))
+		{
+			$post_accessories_tab = explode('-', Tools::getValue('inputAccessories'));
+			foreach ($post_accessories_tab as $accessory_id)
+				if (!$this->haveThisAccessory($accessory_id, $accessories) && $accessory = Product::getAccessoryById($accessory_id))
+					$accessories[] = $accessory;
+		}
+		$data->assign('accessories', $accessories);
+
+		$product->manufacturer_name = Manufacturer::getNameById($product->id_manufacturer);
+
+		$tab_root = array('id_category' => $root->id, 'name' => $root->name);
+		$helper = new Helper();
+		$category_tree = $helper->renderCategoryTree($tab_root, $selected_cat, 'categoryBox', false, true, array(), false, true);
+		$data->assign(array('default_category' => $default_category,
+					'selected_cat_ids' => implode(',', array_keys($selected_cat)),
+					'selected_cat' => $selected_cat,
+					'id_category_default' => $product->getDefaultCategory(),
+					'category_tree' => $category_tree,
+					'product' => $product,
+					'link' => $this->context->link,
+					'is_shop_context' => Shop::getContext() == Shop::CONTEXT_SHOP
+		));
+		
+		
+		
+		
 		$this->tpl_form_vars['custom_form'] = $data->fetch();
+
+
 	}
 
 	public function initFormShipping($obj)
@@ -4235,6 +4302,7 @@ class AdminProductsControllerCore extends AdminController
 	 */
 	public function initFormModules($obj)
 	{
+	die($this->tab_display_module);
  		$id_module = Db::getInstance()->getValue('SELECT `id_module` FROM `'._DB_PREFIX_.'module` WHERE `name` = \''.pSQL($this->tab_display_module).'\'');
 		$this->tpl_form_vars['custom_form'] = Hook::exec('displayAdminProductsExtra', array(), (int)$id_module);
 	}

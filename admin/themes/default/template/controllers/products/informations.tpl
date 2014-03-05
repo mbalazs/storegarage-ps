@@ -387,19 +387,15 @@
 	</table>
 	<br />
 </div>
+
 <!-- STOREGARAGE #48 Start -->
-<div id="ppackcontainer">
+
 <h4>{l s='Pack'}</h4>
 <div class="separation"></div>
 
 <table>
 	<tr>
-		<td>
-			<div class="ppack">
-				<input type="checkbox" name="ppack" id="ppack" value="1" {if $product_type == Product::PTYPE_PACK}checked="checked"{/if} onclick="$('#ppackdiv').slideToggle();" />
-				<label class="t" for="ppack">{l s='Pack'}</label>
-			</div>
-		</td>
+		
 		<td>
 			<div id="ppackdiv" {if !($product_type == Product::PTYPE_PACK)}style="display: none;"{/if}>
 
@@ -437,7 +433,7 @@
 		</div>
 	</tr>
 </table>
-</div>
+
 
 <input type="hidden" name="submitted_tabs[]" value="Associations" />
 <div class="Associations">

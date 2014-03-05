@@ -106,11 +106,13 @@
 
 		$(document).ready(function()
 		{
+		
+		
 			$('#product-tab-content-wait').show();
 			//product_type = $("input[name=type_product]:checked").val();
 			
 			if($("#simple_product").is(":checked")) {
-				$('#ppackcontainer').hide();
+				$('#ppackdiv').hide();
 			}
 
 			if (product_type == product_type_pack)
@@ -129,11 +131,11 @@
 			}
 
 			$('#simple_product').click(function() {
-					$('#ppackcontainer').hide();
+					$('#ppackdiv').hide();
 			});
 
 			$('#pack_product').click(function() {
-					$('#ppackcontainer').show();
+					$('#ppackdiv').show();
 			});
 
 			$('#desc-product-newCombination').hide();
