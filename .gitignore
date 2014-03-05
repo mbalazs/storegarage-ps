@@ -1,4 +1,8 @@
 config/settings.inc.php
 config/xml/*
 modules/gamification/data/*
-
+cache/*
+cache/smarty/*
+cache/sandbox/*
+cache/cachefs/*
+cache/tcpdf/*
