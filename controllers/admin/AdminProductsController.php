@@ -1852,7 +1852,7 @@ class AdminProductsControllerCore extends AdminController
 							$this->updateAccessories($object);
 							$this->processAttachments();
 							$this->updateAccessories($object);
-
+							
 						}
 						if ($this->isTabSubmitted('Shipping'))
 							$this->addCarriers();
@@ -3449,8 +3449,28 @@ class AdminProductsControllerCore extends AdminController
 	public function initFormInformations($product)
 	{
 
-		$this->initFormAssociations($product);
+		//$this->initFormAssociations($product);
 		$data = $this->createTemplate($this->tpl_form);
+
+		if (Tools::getValue('namePackItems'))
+		{
+			$input_pack_items = Tools::getValue('inputPackItems');
+			$input_namepack_items = Tools::getValue('namePackItems');
+			$pack_items = $this->getPackItems();
+		}
+		else
+		{
+			$product->packItems = Pack::getItems($product->id, $this->context->language->id);
+			$pack_items = $this->getPackItems($product);
+			$input_namepack_items = '';
+			$input_pack_items = '';
+			foreach ($pack_items as $pack_item)
+			{
+				$input_pack_items .= $pack_item['pack_quantity'].'x'.$pack_item['id'].'-';
+				$input_namepack_items .= $pack_item['pack_quantity'].' x '.$pack_item['name'].'¤';
+			}
+		}
+
 
 		$currency = $this->context->currency;
 		$data->assign('languages', $this->_languages);
@@ -3525,6 +3545,7 @@ class AdminProductsControllerCore extends AdminController
 		$data->assign('check_product_association_ajax', $check_product_association_ajax);
 		$data->assign('id_lang', $this->context->language->id);
 		$data->assign('product', $product);
+		$data->assign('pack',$pack);
 		$data->assign('token', $this->token);
 		$data->assign('currency', $currency);
 		$data->assign($this->tpl_form_vars);
@@ -3579,6 +3600,10 @@ class AdminProductsControllerCore extends AdminController
 					'category_tree' => $category_tree,
 					'product' => $product,
 					'link' => $this->context->link,
+					'input_pack_items' => $input_pack_items,
+					'input_namepack_items' => $input_namepack_items,
+					'pack_items' => $pack_items,
+					'product_type' => (int)Tools::getValue('type_product', $product->getType()),
 					'is_shop_context' => Shop::getContext() == Shop::CONTEXT_SHOP
 		));
 		

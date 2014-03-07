@@ -960,7 +960,7 @@ product_tabs['Informations'] = new function(){
 	};
 }
 
-product_tabs['Pack'] = new function(){
+product_tabs['Informations'] = new function(){
 	var self = this;
 	this.bindPackEvents = function (){
 		if ($('#ppack').prop('checked'))
