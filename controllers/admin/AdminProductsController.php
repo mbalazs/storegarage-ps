@@ -1854,7 +1854,7 @@ class AdminProductsControllerCore extends AdminController
 							$this->updateAccessories($object);
 							
 						}
-						if ($this->isTabSubmitted('Shipping'))
+						if ($this->isTabSubmitted('Delivery'))
 							$this->addCarriers();
 						if ($this->isTabSubmitted('Associations'))
 							$this->updateAccessories($object);
@@ -3613,6 +3613,13 @@ class AdminProductsControllerCore extends AdminController
 		$this->tpl_form_vars['custom_form'] = $data->fetch();
 
 
+	}
+
+
+	public function initFormDelivery($obj) 
+	{
+		$this->initFormShipping($obj);
+		$this->initFormVirtualProduct($obj);
 	}
 
 	public function initFormShipping($obj)
