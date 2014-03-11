@@ -1313,10 +1313,36 @@ product_tabs['Suppliers'] = new function(){
 	};
 }
 
-product_tabs['VirtualProduct'] = new function(){
+product_tabs['Delivery'] = new function(){
 	var self = this;
-
+	
+	
 	this.onReady = function(){
+	if($('#virtual_product').prop('checked'))
+		{
+			$('#shipping_container').hide();
+			$('#virtual_container').show();
+		}
+	if($('#shipping').prop('checked'))
+		{
+			$('#shipping_container').show();
+			$('#virtual_container').hide();
+		}
+	$('#virtual_product').click(function() {
+		if($('#virtual_product').prop('checked'))
+		{
+			$('#shipping_container').hide();
+			$('#virtual_container').show();
+		}
+	});
+	$('#shipping').click(function() {
+		if($('#shipping').prop('checked'))
+		{
+			$('#shipping_container').show();
+			$('#virtual_container').hide();
+		}
+	});
+		
 		$(".datepicker").datepicker({
 			prevText: '',
 			nextText: '',
@@ -1382,6 +1408,8 @@ product_tabs['VirtualProduct'] = new function(){
 			}
 		});
 	}
+	
+	
 }
 
 product_tabs['Warehouses'] = new function(){

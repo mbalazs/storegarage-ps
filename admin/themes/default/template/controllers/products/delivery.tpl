@@ -115,10 +115,10 @@
 <h4>{l s='Delivery'}</h4>
 <div class="separation"></div>
 <div>
-		<input type="radio" name="type" id="shipping" value="0"  />
-		<label class="radioCheck" for="virtual">{l s='Shipping'}</label -->
+		<input type="radio" name="type_product" id="shipping" value="0" checked/>
+		<label class="radioCheck" for="shipping">{l s='Shipping'}</label>
 		<input type="radio" name="type_product" id="virtual_product" {if $is_in_pack}disabled="disabled"{/if} value="{Product::PTYPE_VIRTUAL}" {if $product_type == Product::PTYPE_VIRTUAL}checked="checked"{/if} />
-		<label class="radioCheck" for="virtual">{l s='Virtual Product (services, booking or downloadable products)'}</label -->
+		<label class="radioCheck" for="virtual">{l s='Virtual Product (services, booking or downloadable products)'}</label>
 </div>
 <div class="separation"></div>
 <h4>{l s='Shipping'}</h4>
@@ -128,7 +128,7 @@
 {/if}
 
 <div class="separation"></div>
-
+<div id="shipping_container">
 <table>
 	<tr>
 		<td class="col-left"><label>{l s='Width (package):'}</label></td>
@@ -180,9 +180,10 @@
 </table>
 
 <div class="separation"></div>
-
+</div>
 <h4>{l s='Virtual Product (services, booking or downloadable products)'}</h4>
 <div class="separation"></div>
+<div id="virtual_container">
 <div>
 	<!--<div class="is_virtual_good">
 		<input type="checkbox" id="is_virtual_good" name="is_virtual_good" value="true" {if $product->is_virtual && $product->productDownload->active}checked="checked"{/if} />
@@ -312,7 +313,7 @@
 	<!--/div!-->
 	<div style="clear:both"></div>
 </div>
-
+</div>
 
 <script>
 	function unselectAllCarriers()
