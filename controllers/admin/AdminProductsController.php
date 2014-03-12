@@ -3470,7 +3470,10 @@ class AdminProductsControllerCore extends AdminController
 				$input_namepack_items .= $pack_item['pack_quantity'].' x '.$pack_item['name'].'¤';
 			}
 		}
-
+		$product_download = new ProductDownload();
+		if ($id_product_download = $product_download->getIdFromIdProduct($this->getFieldValue($product, 'id')))
+			$product_download = new ProductDownload($id_product_download);
+		$product->{'productDownload'} = $product_download;
 
 		$currency = $this->context->currency;
 		$data->assign('languages', $this->_languages);
@@ -3481,10 +3484,7 @@ class AdminProductsControllerCore extends AdminController
 		/*
 		* Form for adding a virtual product like software, mp3, etc...
 		*/
-		$product_download = new ProductDownload();
-		if ($id_product_download = $product_download->getIdFromIdProduct($this->getFieldValue($product, 'id')))
-			$product_download = new ProductDownload($id_product_download);
-		$product->{'productDownload'} = $product_download;
+	
 
 		$cache_default_attribute = (int)$this->getFieldValue($product, 'cache_default_attribute');
 
@@ -3620,6 +3620,8 @@ class AdminProductsControllerCore extends AdminController
 	{
 		$this->initFormShipping($obj);
 		$this->initFormVirtualProduct($obj);
+
+	
 	}
 
 	public function initFormShipping($obj)

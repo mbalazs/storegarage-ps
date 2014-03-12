@@ -1318,19 +1318,24 @@ product_tabs['Delivery'] = new function(){
 	
 	
 	this.onReady = function(){
+		$('#shipping_container').hide();
+			$('#virtual_container').hide();
 	if($('#virtual_product').prop('checked'))
 		{
+			
 			$('#shipping_container').hide();
 			$('#virtual_container').show();
 		}
 	if($('#shipping').prop('checked'))
 		{
+			
 			$('#shipping_container').show();
 			$('#virtual_container').hide();
 		}
 	$('#virtual_product').click(function() {
 		if($('#virtual_product').prop('checked'))
 		{
+			$('#is_virtual_good').attr('checked','true');
 			$('#shipping_container').hide();
 			$('#virtual_container').show();
 		}
@@ -1338,6 +1343,7 @@ product_tabs['Delivery'] = new function(){
 	$('#shipping').click(function() {
 		if($('#shipping').prop('checked'))
 		{
+			$('#is_virtual_good').attr('checked','false');
 			$('#shipping_container').show();
 			$('#virtual_container').hide();
 		}

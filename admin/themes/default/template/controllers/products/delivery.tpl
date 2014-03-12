@@ -113,11 +113,13 @@
 <!--h4 class="tab">1. {l s='Delivery.'}</h4!-->
 
 <h4>{l s='Delivery'}</h4>
+{if $product_downloaded }downloaded{/if}
+{if !$product_downloaded }not downloaded{/if}
 <div class="separation"></div>
 <div>
-		<input type="radio" name="type_product" id="shipping" value="0" checked/>
+		<input type="radio" name="type_product" id="shipping" value="4" />
 		<label class="radioCheck" for="shipping">{l s='Shipping'}</label>
-		<input type="radio" name="type_product" id="virtual_product" {if $is_in_pack}disabled="disabled"{/if} value="{Product::PTYPE_VIRTUAL}" {if $product_type == Product::PTYPE_VIRTUAL}checked="checked"{/if} />
+		<input type="radio" name="type_product" id="virtual_product" {if $is_in_pack}disabled="disabled"{/if} value="{Product::PTYPE_VIRTUAL}" {* if $product_type == Product::PTYPE_VIRTUAL}checked="checked"{/if *} />
 		<label class="radioCheck" for="virtual">{l s='Virtual Product (services, booking or downloadable products)'}</label>
 </div>
 <div class="separation"></div>
@@ -185,12 +187,14 @@
 <div class="separation"></div>
 <div id="virtual_container">
 <div>
-	<!--<div class="is_virtual_good">
-		<input type="checkbox" id="is_virtual_good" name="is_virtual_good" value="true" {if $product->is_virtual && $product->productDownload->active}checked="checked"{/if} />
-			<label for="is_virtual_good" class="t bold">{l s='Is this a virtual product?'}</label>
-	</div-->
+	<div class="is_virtual_good">
+		<input type="checkbox" id="is_virtual_good" name="is_virtual_good" value="true" {if $product->is_virtual && $product->productDownload->active}checked="checked"{/if}  />
+			<!--label for="is_virtual_good" class="t bold">{l s='Is this a virtual product?'}</label-->
+			<!--input type="hiddenx" id="is_virtual_good" name="is_virtual_good" value="true" {if $product->is_virtual && $product->productDownload->active}checked="checked"{/if}  /-->
+	</div>
 	{* [begin] virtual product *}
-	<!--div id="virtual_good" {if !$product->productDownload->id || $product->productDownload->active}style="display:none"{/if}>!-->
+	<!--div id="virtual_good" {if !$product->productDownload->id || $product->productDownload->active}style="display:none"{/if}-->
+		<div id="virtual_good"> 
 		<div>
 			<label>{l s='Does this product have an associated file?'}</label>
 			<label style="width:50px"><input type="radio" value="1"  name="is_virtual_file" {if $product_downloaded}checked="checked"{/if} />{l s='Yes'}</label>
@@ -310,7 +314,7 @@
 				{/if}
 			</table>
 		</div>
-	<!--/div!-->
+	</div>
 	<div style="clear:both"></div>
 </div>
 </div>
