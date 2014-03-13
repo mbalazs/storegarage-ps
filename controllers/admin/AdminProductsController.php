@@ -3616,11 +3616,59 @@ class AdminProductsControllerCore extends AdminController
 	}
 
 
-	public function initFormDelivery($obj) 
+	public function initFormDelivery($product) 
 	{
-		$this->initFormShipping($obj);
-		$this->initFormVirtualProduct($obj);
+		//$this->initFormShipping($obj);
+		//$this->initFormVirtualProduct($obj);
+		$data = $this->createTemplate($this->tpl_form);
+			$data->assign(array(
+						  'product' => $product,
+						  'ps_dimension_unit' => Configuration::get('PS_DIMENSION_UNIT'),
+						  'ps_weight_unit' => Configuration::get('PS_WEIGHT_UNIT'),
+						  'carrier_list' => $this->getCarrierList(),
+						  'currency' => $this->context->currency,
+						  'country_display_tax_label' =>  $this->context->country->display_tax_label
+					  ));
+		$currency = $this->context->currency;
 
+		/*
+		* Form for adding a virtual product like software, mp3, etc...
+		*/
+		$product_download = new ProductDownload();
+		if ($id_product_download = $product_download->getIdFromIdProduct($this->getFieldValue($product, 'id')))
+			$product_download = new ProductDownload($id_product_download);
+		$product->{'productDownload'} = $product_download;
+
+		// @todo handle is_virtual with the value of the product
+		$exists_file = realpath(_PS_DOWNLOAD_DIR_).'/'.$product->productDownload->filename;
+		$data->assign('product_downloaded', $product->productDownload->id && !empty($product->productDownload->display_filename));
+
+		if (!file_exists($exists_file)
+			&& !empty($product->productDownload->display_filename)
+			&& empty($product->cache_default_attribute))
+			$msg = sprintf(Tools::displayError('This file "%s" is missing.'), $product->productDownload->display_filename);
+		else
+			$msg = '';
+
+		$data->assign('download_product_file_missing', $msg);
+		$data->assign('download_dir_writable', ProductDownload::checkWritableDir());
+
+		$data->assign('up_filename', strval(Tools::getValue('virtual_product_filename')));
+
+		$product->productDownload->nb_downloadable = ($product->productDownload->id > 0) ? $product->productDownload->nb_downloadable : htmlentities(Tools::getValue('virtual_product_nb_downloable'), ENT_COMPAT, 'UTF-8');
+		$product->productDownload->date_expiration = ($product->productDownload->id > 0) ? ((!empty($product->productDownload->date_expiration) && $product->productDownload->date_expiration != '0000-00-00 00:00:00') ? date('Y-m-d', strtotime($product->productDownload->date_expiration)) : '' ) : htmlentities(Tools::getValue('virtual_product_expiration_date'), ENT_COMPAT, 'UTF-8');
+		$product->productDownload->nb_days_accessible = ($product->productDownload->id > 0) ? $product->productDownload->nb_days_accessible : htmlentities(Tools::getValue('virtual_product_nb_days'), ENT_COMPAT, 'UTF-8');
+		$product->productDownload->is_shareable = $product->productDownload->id > 0 && $product->productDownload->is_shareable;
+
+		$data->assign('ad', dirname($_SERVER['PHP_SELF']));
+		$data->assign('product', $product);
+		$data->assign('token', $this->token);
+		$data->assign('currency', $currency);
+		$data->assign($this->tpl_form_vars);
+		$data->assign('link', $this->context->link);
+		$data->assign('is_file', $product->productDownload->checkFile());
+		$this->tpl_form_vars['product'] = $product;
+		$this->tpl_form_vars['custom_form'] = $data->fetch();
 	
 	}
 
