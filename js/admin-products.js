@@ -838,6 +838,7 @@ product_tabs['Informations'] = new function(){
 	};
 
 	this.switchProductType = function(){
+		
 		if (product_type == product_type_pack)
 		{
 			$('#pack_product').attr('checked', true);
@@ -873,11 +874,11 @@ product_tabs['Informations'] = new function(){
 			{
 				//when you change the type of the product, directly go to the pack tab
 				$('li.tab-row a[id*="Pack"]').show().click();
-				$('#ppack').val(1).attr('checked', true).attr('disabled', true);
+				//$('#ppack').val(1).attr('checked', true).attr('disabled', true);
 				$('#ppackdiv').show();
 				// If the pack tab has not finished loaded the changes will be made when the loading event is triggered
 				$("#product-tab-content-Pack").bind('loaded', function(){
-					$('#ppack').val(1).attr('checked', true).attr('disabled', true);
+				//	$('#ppack').val(1).attr('checked', true).attr('disabled', true);
 					$('#ppackdiv').show();
 				});
 				$("#product-tab-content-Quantities").bind('loaded', function(){
@@ -962,7 +963,10 @@ product_tabs['Informations'] = new function(){
 
 product_tabs['Informations'] = new function(){
 	var self = this;
+
 	this.bindPackEvents = function (){
+		
+		$('div.ppack').hide();
 		if ($('#ppack').prop('checked'))
 		{
 			$('#ppack').attr('disabled', true);
@@ -973,7 +977,7 @@ product_tabs['Informations'] = new function(){
 			delPackItem($(this).attr('name'));
 		})
 
-		$('div.ppack').hide();
+		
 
 		$('#curPackItemName').autocomplete('ajax_products_list.php', {
 			delay: 100,
@@ -1099,6 +1103,19 @@ product_tabs['Informations'] = new function(){
 	};
 
 	this.onReady = function(){
+	
+
+	$('#simple_product').click(function() {
+		$('#type_product').val('0');
+		$('#is_virtual').val(0);
+
+	});
+	$('#pack_product').click(function() {
+		$('#type_product').val('1');
+		$('#is_virtual').val(0);
+
+	});
+
 		self.bindPackEvents();
 	}
 }
@@ -1335,6 +1352,8 @@ product_tabs['Delivery'] = new function(){
 	$('#virtual_product').click(function() {
 		if($('#virtual_product').prop('checked'))
 		{
+			$('#type_product').val('2');
+			$('#is_virtual').val(1);
 			$('#is_virtual_good').attr('checked','true');
 			$('#shipping_container').hide();
 			$('#virtual_container').show();

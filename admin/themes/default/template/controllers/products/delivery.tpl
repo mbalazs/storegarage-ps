@@ -115,11 +115,14 @@
 <h4>{l s='Delivery'}</h4>
 {if $product_downloaded }downloaded{/if}
 {if !$product_downloaded }not downloaded{/if}
+<br>
+
 <div class="separation"></div>
 <div>
-		<input type="radio" name="type_product" id="shipping" value="4" />
+		
+		<input type="radio" name="type_change" id="shipping" value="4" />
 		<label class="radioCheck" for="shipping">{l s='Shipping'}</label>
-		<input type="radio" name="type_product" id="virtual_product" {if $is_in_pack}disabled="disabled"{/if} value="{Product::PTYPE_VIRTUAL}" {* if $product_type == Product::PTYPE_VIRTUAL}checked="checked"{/if *} />
+		<input type="radio" name="type_change" id="virtual_product" {if $is_in_pack}disabled="disabled"{/if} value="{Product::PTYPE_VIRTUAL}" {if ($product_type==Product::PTYPE_VIRTUAL)}checked{/if} />
 		<label class="radioCheck" for="virtual">{l s='Virtual Product (services, booking or downloadable products)'}</label>
 </div>
 <div class="separation"></div>

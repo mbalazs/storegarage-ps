@@ -1847,6 +1847,7 @@ class AdminProductsControllerCore extends AdminController
 					Logger::addLog(sprintf($this->l('%s edition'), $this->className), 1, null, $this->className, (int)$this->object->id, true, (int)$this->context->employee->id);
 					if (in_array($this->context->shop->getContext(), array(Shop::CONTEXT_SHOP, Shop::CONTEXT_ALL)))
 					{
+
 						if ($this->isTabSubmitted('Informations'))
 						{
 							$this->updateAccessories($object);
@@ -1854,8 +1855,12 @@ class AdminProductsControllerCore extends AdminController
 							$this->updateAccessories($object);
 							
 						}
-						if ($this->isTabSubmitted('Delivery'))
+						if ($this->isTabSubmitted('Delivery')) {
 							$this->addCarriers();
+							$this->updateAccessories($object);
+							$this->processAttachments();
+							$this->updateAccessories($object);
+						}
 						if ($this->isTabSubmitted('Associations'))
 							$this->updateAccessories($object);
 						if ($this->isTabSubmitted('Suppliers'))

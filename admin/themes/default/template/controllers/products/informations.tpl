@@ -94,11 +94,16 @@
 	<div class="separation"></div>
 	<div id="warn_virtual_combinations" class="warn" style="display:none">{l s='You cannot use combinations with a virtual product.'}</div>
 	<div>
+	<div>Type: {if ($product_type==Product::PTYPE_SIMPLE)}simple{/if} {if ($product_type==Product::PTYPE_PACK)}pack{/if} {if ($product_type==Product::PTYPE_VIRTUAL)}virtual{/if}</div>
+
+	<input type="hidden" name="type_product" id="type_product" value="{$product_type}"  />
 		<label class="text">{$bullet_common_field} {l s='Type:'}</label>
-		<input type="radio" name="type_product" id="simple_product" value="{Product::PTYPE_SIMPLE}" {if $product_type == Product::PTYPE_SIMPLE}checked="checked"{/if} />
+			<input type="radio" name="tchange" id="simple_product" value="1" {if ($product_type==Product::PTYPE_SIMPLE)}checked{/if} />
 		<label class="radioCheck" for="simple_product">{l s='Product'}</label>
-		<input type="radio" name="type_product" {if $is_in_pack}disabled="disabled"{/if} id="pack_product" value="{Product::PTYPE_PACK}" {if $product_type == Product::PTYPE_PACK}checked="checked"{/if} />
+		<input type="radio" name="tchange" {if $is_in_pack}disabled="disabled"{/if} {if ($product_type==Product::PTYPE_PACK)}checked{/if} id="pack_product" value="0" />
 		<label class="radioCheck" for="pack_product">{l s='Pack'}</label>
+	
+		
 	<!-- STOREGARAGE #47 input type="radio" name="type_product" id="virtual_product" {if $is_in_pack}disabled="disabled"{/if} value="{Product::PTYPE_VIRTUAL}" {if $product_type == Product::PTYPE_VIRTUAL}checked="checked"{/if} />
 		<label class="radioCheck" for="virtual_product">{l s='Virtual Product (services, booking or downloadable products)'}</label -->
 	</div>
