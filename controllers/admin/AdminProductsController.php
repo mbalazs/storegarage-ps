@@ -92,7 +92,7 @@ class AdminProductsControllerCore extends AdminController
 			'Quantities' => $this->l('Quantities'), 
 			'Suppliers' => $this->l('Suppliers'),
 			'Warehouses' => $this->l('Warehouses'),
-			'InventoryandVariants' => $this->l('Inventory and Variants'),
+			'Inventory' => $this->l('Inventory and Variants'),
 			'Delivery' => $this->l('Delivery'),
 			
 		);
@@ -106,7 +106,7 @@ class AdminProductsControllerCore extends AdminController
 				'Prices' => 1,
 /* STOREGARAGE #46		'Seo' => 2, */
 				'Images' => 2,
-				'InventoryandVariants' => 3,
+				'Inventory' => 3,
 				'Delivery' => 4,
 				'Seo' => 5,
 /*'Associations' => 3,
@@ -3449,6 +3449,14 @@ class AdminProductsControllerCore extends AdminController
 			$this->displayWarning($this->l('You must save this product before adding attachements.'));
 
 		$this->tpl_form_vars['custom_form'] = $data->fetch();
+	}
+
+
+	public function initFormInventory($product) {
+		$data = $this->createTemplate($this->tpl_form);
+
+		$this->tpl_form_vars['custom_form'] = $data->fetch();
+
 	}
 
 	public function initFormInformations($product)
