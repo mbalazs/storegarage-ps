@@ -2324,6 +2324,17 @@ class AdminProductsControllerCore extends AdminController
 			die('['.implode(',', $jsonArray).']');
 	}
 
+
+	public function ajaxProcessProductAttributevalues()
+	{
+		$attribute = Attribute::getAttributes(Context::getContext()->language->id, true);
+		$jsonArray = array();
+			if ($manufacturers)
+				foreach ($manufacturers as $manufacturer)
+					$jsonArray[] = '{"optionValue": "'.(int)$attribute['id_attribute'].'", "optionDisplay": "'.htmlspecialchars(trim($attribute['name'])).'"}';
+			die('['.implode(',', $jsonArray).']');
+	}
+
 	/**
 	 * Build a categories tree
 	 *
@@ -3454,7 +3465,8 @@ class AdminProductsControllerCore extends AdminController
 
 	public function initFormInventory($product) {
 		$data = $this->createTemplate($this->tpl_form);
-
+		$attributes = Attribute::getAttributes($this->context->language->id, true);
+		$data->assign('attributes',$attributes);
 		$this->tpl_form_vars['custom_form'] = $data->fetch();
 
 	}

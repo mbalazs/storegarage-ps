@@ -27,7 +27,44 @@
 var product_tabs = [];
 
 product_tabs['Inventory'] = new function(){
+
+	this.getAttributeValues = function(){
+		$.ajax({
+				url: 'ajax-tab.php',
+				cache: false,
+				dataType: 'json',
+				data: {
+					ajaxProductAttributevalues : "1",
+					ajax : '1',
+					token : token,
+					controller : 'AdminProducts',
+					action : 'ProductAttributevalues'
+				},
+				success: function(j) {
+					var options = $('#attr_values_sel').html();
+					alert('ok');
+					if (j)
+					for (var i = 0; i < j.length; i++)
+						options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
+					$("#attr_values_sel").html(options);
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown)
+				{
+					
+					$("inv_errortext").replaceWith("<p id=\"inv_errortext\">[TECHNICAL ERROR] ajaxgetAttributes: "+textStatus+"</p>");
+				}
+		});
+	};
+
+
 	this.onReady = function(){
+
+	$('#attribute_sel').change(function() {
+		 var option = this.options[this.selectedIndex].innerHTML;
+     //alert(option);
+    self.getAttributeValues();
+    });
+
 		if($('#is_inventory').prop('checked')) {
 			$('#inv_div').show();
 		} else {

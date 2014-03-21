@@ -23,6 +23,8 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
+
+
 <input type="hidden" name="submitted_tabs[]" value="Inventory" />
 <input type="checkbox" name="is_inventory" id="is_inventory" />{l s='This product has multiple options (eg. multiple sizes and colors'}
 <div id="inv_div">
@@ -30,14 +32,17 @@
 
 <div class="separation"></div>
 
-<select name="attributes">
-<option>test attribute</option>
+<select name="attributes" id="attribute_sel" style="width: 140px;">
+<option >{l s='Select an attribute'}</option>
+{foreach from=$attributes item=attr}
+<option value="{$attr.name}">{$attr.name}</option>
+{/foreach}
 </select>
-<input style="width: 140px; margin-bottom: 10px;" type="button" value="{l s='Add'}" class="button" onclick="add_attr();"/><br />
+<input style="width: 40px; margin-bottom: 10px;" type="button" value="{l s='Add'}" class="button" onclick="add_attr();"/><br />
 <h4 >{l s='Values'}</h4>
 <div class="separation"></div>
-<select name="values">
+<select name="attr_values" id="attr_values_sel" style="width: 140px;">
 <option>test value</option>
 </select>
-	<input style="width: 140px; margin-bottom: 10px;" type="button" value="{l s='Add'}" class="button" onclick="add_val();"/><br />
+	<input style="width: 40px; margin-bottom: 10px;" type="button" value="{l s='Add'}" class="button" onclick="add_val();"/><br />
 </div>
