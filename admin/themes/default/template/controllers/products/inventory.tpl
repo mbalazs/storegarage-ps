@@ -33,16 +33,15 @@
 <div class="separation"></div>
 
 <select name="attributes" id="attribute_sel" style="width: 140px;">
-<option >{l s='Select an attribute'}</option>
-{foreach from=$attributes item=attr}
-<option value="{$attr.name}">{$attr.name}</option>
+<option value="-1">{l s='Select an attribute'}</option>
+{foreach from=$attributes_groups item=attr}
+<option value="{$attr.id_attribute_group}">{$attr.name}</option>
 {/foreach}
 </select>
 <input style="width: 40px; margin-bottom: 10px;" type="button" value="{l s='Add'}" class="button" onclick="add_attr();"/><br />
 <h4 >{l s='Values'}</h4>
 <div class="separation"></div>
 <select name="attr_values" id="attr_values_sel" style="width: 140px;">
-<option>test value</option>
 </select>
 	<input style="width: 40px; margin-bottom: 10px;" type="button" value="{l s='Add'}" class="button" onclick="add_val();"/><br />
 </div>

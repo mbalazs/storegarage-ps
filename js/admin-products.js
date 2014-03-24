@@ -27,8 +27,9 @@
 var product_tabs = [];
 
 product_tabs['Inventory'] = new function(){
-
-	this.getAttributeValues = function(){
+var options;
+var self = this;
+		this.getAttributeValues = function(g_id){
 		$.ajax({
 				url: 'ajax-tab.php',
 				cache: false,
@@ -38,14 +39,20 @@ product_tabs['Inventory'] = new function(){
 					ajax : '1',
 					token : token,
 					controller : 'AdminProducts',
-					action : 'ProductAttributevalues'
+					action : 'productAttributeValues',
+					group_id : g_id
 				},
 				success: function(j) {
-					var options = $('#attr_values_sel').html();
-					alert('ok');
-					if (j)
-					for (var i = 0; i < j.length; i++)
-						options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
+					var options='';
+					$('#attr_values_sel').show();
+					if (j) {
+						if(j.length==0) {
+							alert('No values');
+						}
+						for (var i = 0; i < j.length; i++) {
+							options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
+						} 
+					} 
 					$("#attr_values_sel").html(options);
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown)
@@ -58,11 +65,14 @@ product_tabs['Inventory'] = new function(){
 
 
 	this.onReady = function(){
+	$('#attr_values_sel').hide();
 
 	$('#attribute_sel').change(function() {
+		if($(this.options[0]).val()==-1) {
+			$(this.options[0]).hide();
+		}
 		 var option = this.options[this.selectedIndex].innerHTML;
-     //alert(option);
-    self.getAttributeValues();
+		 self.getAttributeValues($(this.options[this.selectedIndex]).val());
     });
 
 		if($('#is_inventory').prop('checked')) {

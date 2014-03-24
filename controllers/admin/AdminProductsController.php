@@ -2325,14 +2325,17 @@ class AdminProductsControllerCore extends AdminController
 	}
 
 
-	public function ajaxProcessProductAttributevalues()
+	public function ajaxProcessProductAttributeValues()
 	{
-		$attribute = Attribute::getAttributes(Context::getContext()->language->id, true);
+		$group_id=$_REQUEST['group_id'];
+		$attribute = Attribute::getAttributes($this->context->language->id, true);
 		$jsonArray = array();
-			if ($manufacturers)
-				foreach ($manufacturers as $manufacturer)
-					$jsonArray[] = '{"optionValue": "'.(int)$attribute['id_attribute'].'", "optionDisplay": "'.htmlspecialchars(trim($attribute['name'])).'"}';
-			die('['.implode(',', $jsonArray).']');
+			if ($attribute)
+				foreach ($attribute as $attr) {
+					if($attr['id_attribute_group']==$group_id)
+					$jsonArray[] = '{"optionValue": "'.(int)$attr['id_attribute'].'", "optionDisplay": "'.htmlspecialchars(trim($attr['name'])).'"}';
+				}
+				die('['.implode(',', $jsonArray).']');
 	}
 
 	/**
@@ -3465,8 +3468,10 @@ class AdminProductsControllerCore extends AdminController
 
 	public function initFormInventory($product) {
 		$data = $this->createTemplate($this->tpl_form);
+		$attributes_groups = AttributeGroup::getAttributesGroups($this->context->language->id);
 		$attributes = Attribute::getAttributes($this->context->language->id, true);
 		$data->assign('attributes',$attributes);
+		$data->assign('attributes_groups',$attributes_groups);
 		$this->tpl_form_vars['custom_form'] = $data->fetch();
 
 	}
