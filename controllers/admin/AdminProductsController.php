@@ -2605,6 +2605,12 @@ class AdminProductsControllerCore extends AdminController
 		return $parent;
 	}
 
+
+	public function addProudctAttribute() {
+		
+
+	}
+
 	public function getPreviewUrl(Product $product)
 	{
 		$id_lang = Configuration::get('PS_LANG_DEFAULT', null, null, Context::getContext()->shop->id);

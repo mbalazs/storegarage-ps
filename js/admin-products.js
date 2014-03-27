@@ -44,7 +44,7 @@ var self = this;
 				},
 				success: function(j) {
 					var options='';
-					$('#attr_values_sel').show();
+					$('#values_table').show();
 					if (j) {
 						if(j.length==0) {
 							alert('No values');
@@ -57,7 +57,7 @@ var self = this;
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown)
 				{
-					
+					$('#values_table').hide();
 					$("inv_errortext").replaceWith("<p id=\"inv_errortext\">[TECHNICAL ERROR] ajaxgetAttributes: "+textStatus+"</p>");
 				}
 		});
@@ -65,7 +65,7 @@ var self = this;
 
 
 	this.onReady = function(){
-	$('#attr_values_sel').hide();
+	$('#values_table').hide();
 
 	$('#attribute_sel').change(function() {
 		if($(this.options[0]).val()==-1) {
