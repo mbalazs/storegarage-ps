@@ -66,7 +66,28 @@ var self = this;
 
 	this.onReady = function(){
 	$('#values_table').hide();
-
+	$('#attribute_group_form').hide();
+	$('#attribute_form').hide();
+	toggleattribute=false;
+	togglevalue=false;
+	$('#attribute_add_but').click(function() {
+		if(!toggleattribute) {
+			toggleattribute=true;
+			$('#attribute_group_form').show();
+		} else {
+			toggleattribute=false;
+			$('#attribute_group_form').hide();
+		}
+	});
+	$('#value_add_but').click(function() {
+		if(!togglevalue) {
+			togglevalue=true;
+			$('#attribute_form').show();
+		} else {
+			togglevalue=false;
+			$('#attribute_form').hide();
+		}
+	});
 	$('#attribute_sel').change(function() {
 		if($(this.options[0]).val()==-1) {
 			$(this.options[0]).hide();

@@ -42,7 +42,7 @@
 	</select>
 	</td>
 	<td valign="top">
-		<input style="width: 40px; margin-bottom: 10px;" type="button" value="{l s='Add'}" class="button" onclick="add_attr();"/><br />
+		<input style="width: 40px; margin-bottom: 10px;" type="button" id="attribute_add_but" value="{l s='Add'}" class="button"/><br />
 	</td>
 	<td>
 	<form id="attribute_group_form" class="defaultForm AdminAttributesGroups" action="" method="post" enctype="multipart/form-data" >
@@ -115,7 +115,7 @@
 		</select>
 		</td>
 		<td valign="top">
-		<input style="width: 40px; margin-bottom: 10px;" type="button" value="{l s='Add'}" class="button" onclick="add_val();"/><br />
+		<input style="width: 40px; margin-bottom: 10px;" id="value_add_but" type="button" value="{l s='Add'}" class="button"/><br />
 		</td>
 		<td>
 	
@@ -124,7 +124,11 @@
 		<legend><img src="../img/admin/asterisk.gif" alt="Values" />Values</legend>
 			<label>Attribute group: </label>
 		<div class="margin-form">
-			<select name="id_attribute_group" class="" id="id_attribute_group"></select>
+			<select name="id_attribute_group" class="" id="id_attribute_group">
+				{foreach from=$attributes_groups item=attr}
+				<option value="{$attr.id_attribute_group}">{$attr.name}</option>
+				{/foreach}
+			</select>
 		 <sup>*</sup>								
 		<p class="preference_description">Choose the group of the attribute</p>
 		</div>
