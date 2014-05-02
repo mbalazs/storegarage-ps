@@ -68,6 +68,7 @@ class AttributeGroupCore extends ObjectModel
 		),
 	);
 
+	
 	public function add($autodate = true, $nullValues = false)
 	{
 		if ($this->group_type == 'color')

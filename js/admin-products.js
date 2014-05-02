@@ -29,6 +29,59 @@ var product_tabs = [];
 product_tabs['Inventory'] = new function(){
 var options;
 var self = this;
+
+		this.saveAttributeGroupValues = function(attrgroup_name,attrgroup_public_name,attrgroup_type) {
+			$.ajax({
+				url: 'ajax-tab.php',
+				cache: false,
+				dataType: 'json',
+				data: {
+					ajaxProductAttributevalues : "1",
+					ajax : '1',
+					token : token,
+					controller : 'AdminProducts',
+					action : 'saveAttributeGroup',
+					attrgroup_name : attrgroup_name,
+					attrgroup_public_name : attrgroup_public_name,
+					attrgroup_type : attrgroup_type
+				},
+				success: function(j) 
+				{
+
+				},	
+				error: function(XMLHttpRequest, textStatus, errorThrown)
+				{
+					
+				}
+			});
+		};
+		
+		this.saveAttributeValues = function(attr_id,attr_value) {
+			$.ajax({
+				url: 'ajax-tab.php',
+				cache: false,
+				dataType: 'json',
+				data: {
+					ajaxProductAttributevalues : "1",
+					ajax : '1',
+					token : token,
+					controller : 'AdminProducts',
+					action : 'saveAttributes',
+					attr_id : attr_id,
+					attr_value : attr_value
+					
+				},
+				success: function(j) 
+				{
+
+				},	
+				error: function(XMLHttpRequest, textStatus, errorThrown)
+				{
+					
+				}
+			});
+		};
+
 		this.getAttributeValues = function(g_id){
 		$.ajax({
 				url: 'ajax-tab.php',
@@ -70,6 +123,26 @@ var self = this;
 	$('#attribute_form').hide();
 	toggleattribute=false;
 	togglevalue=false;
+
+	$('#attrgroupsub').click(function() {
+		var attrgroup_name =  $('#attrgroup_name').val();
+		var attrgroup_type = $('#group_type').val();
+		var attrgroup_public_name = $('#attrgroup_public_name').val();
+		$('#attrgroup_name').val('');
+		$('#attrgroup_public_name').val('');
+	
+		
+		self.saveAttributeGroupValues(attrgroup_name,attrgroup_public_name,attrgroup_type);
+	});
+
+	$('#attrsub').click(function() {
+		var attr_id =  $('#attribute_sel').val();
+		var attr_value = $('#attr_name').val();
+		$('#attr_name').val('');
+		self.saveAttributeValues(attr_id,attr_value); 
+		
+	});
+
 	$('#attribute_add_but').click(function() {
 		if(!toggleattribute) {
 			toggleattribute=true;

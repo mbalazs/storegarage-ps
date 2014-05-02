@@ -1021,6 +1021,8 @@ class AdminProductsControllerCore extends AdminController
 		}
 	}
 
+
+
 	public function ajaxProcessDeleteSpecificPrice()
 	{
 		if ($this->tabAccess['delete'] === '1')
@@ -1135,8 +1137,16 @@ class AdminProductsControllerCore extends AdminController
 
 	public function initProcess()
 	{
+		//if(Tools::isSubmit('submitAddattribute_group')) {
+			//$this->SaveAttributeGroup();
+
+		//}
+
+
 		// Delete a product in the download folder
-		if (Tools::getValue('deleteVirtualProduct'))
+		
+		//else
+			if (Tools::getValue('deleteVirtualProduct'))
 		{
 			if ($this->tabAccess['delete'] === '1')
 				$this->action = 'deleteVirtualProduct';
@@ -2323,6 +2333,57 @@ class AdminProductsControllerCore extends AdminController
 					$jsonArray[] = '{"optionValue": "'.(int)$manufacturer['id_manufacturer'].'", "optionDisplay": "'.htmlspecialchars(trim($manufacturer['name'])).'"}';
 			die('['.implode(',', $jsonArray).']');
 	}
+
+	public function ajaxProcessSaveAttributeGroup() {
+		
+		$jsonArray = array();
+		$name = $_REQUEST['attrgroup_name'];
+		$public_name = $_REQUEST['attrgroup_public_name'];
+		$type = $_REQUEST['attrgroup_type'];
+		
+		$obj = new AttributeGroup();
+						$obj->group_type =$type;
+						$obj->name[$this->context->language->id] = $name;
+						$obj->public_name[$this->context->language->id] = $public_name;
+						
+			$obj->add();
+		die('['.implode(',', $jsonArray).']');
+
+	}
+
+public function ajaxProcessSaveAttributes() {
+		
+		$jsonArray = array();
+		$attr_id = $_REQUEST['attr_id'];
+		$value = $_REQUEST['attr_value'];
+	
+		$obj = new Attribute();
+						$obj->id_attribute_group =$attr_id;
+						$obj->name[$this->context->language->id] = $value;
+											
+			$obj->add();
+		die('['.implode(',', $jsonArray).']');
+
+	}
+public function SaveAttributeGroup() {
+			if(!Tools::isEmpty('name_1')) {			
+			$obj = new AttributeGroup();
+						$type=Tools::getValue('group_type');
+						$name=Tools::getValue('name_1');
+						$public_name=Tools::getValue('public_name_1');
+						$obj->group_type =$type;
+						$obj->name[$this->context->language->id] = $name;
+						$obj->public_name[$this->context->language->id] = $public_name;
+						$obj->position = (!$position) ? AttributeGroup::getHigherPosition() + 1 : $position;
+
+			$obj->add();
+			
+		} else {
+			$this->errors[] = Tools::displayError('No name selected.');
+		}
+		
+	}
+
 
 
 	public function ajaxProcessProductAttributeValues()

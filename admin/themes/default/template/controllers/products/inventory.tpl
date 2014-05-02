@@ -54,7 +54,7 @@
 			<div class="margin-form">
 				<div class="translatable">
 					<div class="lang_1" style="display:block; float: left;">
-								<input type="text" name="name_1" id="name_1" value="" class="" size="33" />
+								<input type="text" name="name_1" id="attrgroup_name" value="" class="" size="33" />
 							<span class="hint" name="help_box">Invalid characters: <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 					</div>
 				<div class="lang_2" style="display:none; float: left;">
@@ -70,7 +70,7 @@
 			<div class="margin-form">
 				<div class="translatable">
 					<div class="lang_1" style="display:block; float: left;">
-						<input type="text" name="public_name_1" id="public_name_1" value="" class="" size="33"/>
+						<input type="text" name="public_name_1" id="attrgroup_public_name" value="" class="" size="33"/>
 						<span class="hint" name="help_box">Invalid characters: <>;=#{}
 							<span class="hint-pointer">&nbsp;</span>
 						</span>												
@@ -92,12 +92,13 @@
 				<select name="group_type" class="" id="group_type">
 					<option value="radio">Radio button</option>	
 					<option value="color">Color</option>
+					<option value="color">Color</option>
 				</select>
 			<p class="preference_description">Choose the type of the attribute</p>
 			</div>
 			<div class="clear"></div>
 			<div class="margin-form">
-			<input type="submit" id="attribute_group_form_submit_btn" value="Save" name="submitAddattribute_group" class="button" />
+			<input type="button" id="attrgroupsub" value="Save" class="button" />
 			</div>
 			<div class="small"><sup>*</sup> Required field</div>
 			</fieldset>
@@ -122,22 +123,15 @@
 		 <form id="attribute_form" class="defaultForm AdminAttributesGroups" action="" method="post" enctype="multipart/form-data" >
 		<fieldset id="fieldset_0">
 		<legend><img src="../img/admin/asterisk.gif" alt="Values" />Values</legend>
-			<label>Attribute group: </label>
-		<div class="margin-form">
-			<select name="id_attribute_group" class="" id="id_attribute_group">
-				{foreach from=$attributes_groups item=attr}
-				<option value="{$attr.id_attribute_group}">{$attr.name}</option>
-				{/foreach}
-			</select>
-		 <sup>*</sup>								
-		<p class="preference_description">Choose the group of the attribute</p>
+									
+		
 		</div>
 		<div class="clear"></div>
 		<label>Value: </label>	
 		<div class="margin-form">
 		<div class="translatable">
 		<div class="lang_1" style="display:block; float: left;">
-			<input type="text" name="name_1" id="name_1" value="" class="" size="33" />
+			<input type="text" name="name_1" id="attr_name" value="" class="" size="33" />
 			<span class="hint" name="help_box">Invalid characters: <>;=#{}
 			<span class="hint-pointer">&nbsp;</span>
 			</span>	
@@ -171,7 +165,7 @@
 		</div>
 		<div class="clear"></div>
 		<div class="margin-form">
-		<input type="submit" id="attribute_form_submit_btn" value="Save" name="submitAddattribute" class="button" />
+		<input type="button" id="attrsub" value="Save" name="submitAddattribute" class="button" />
 		</div>
 		<div class="small"><sup>*</sup> Required field</div>
 		</fieldset>
