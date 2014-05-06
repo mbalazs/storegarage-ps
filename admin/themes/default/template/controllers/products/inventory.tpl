@@ -43,6 +43,7 @@
 	</td>
 	<td valign="top">
 		<input style="width: 40px; margin-bottom: 10px;" type="button" id="attribute_add_but" value="{l s='Add'}" class="button"/><br />
+		<input style="margin-bottom: 10px;" type="button" id="attribute_remove_but" value="{l s='Remove'}" class="button"/><br />
 	</td>
 	<td>
 	<form id="attribute_group_form" class="defaultForm AdminAttributesGroups" action="" method="post" enctype="multipart/form-data" >
@@ -117,6 +118,7 @@
 		</td>
 		<td valign="top">
 		<input style="width: 40px; margin-bottom: 10px;" id="value_add_but" type="button" value="{l s='Add'}" class="button"/><br />
+		<input style="margin-bottom: 10px;" id="value_remove_but" type="button" value="{l s='Remove'}" class="button"/><br />
 		</td>
 		<td>
 	

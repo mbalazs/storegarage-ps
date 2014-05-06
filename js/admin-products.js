@@ -47,7 +47,86 @@ var self = this;
 				},
 				success: function(j) 
 				{
+					var options='';
+					if (j) {
+						if(j.length==0) {
+							alert('No values');
+						}
+						for (var i = 0; i < j.length; i++) {
+							options += '<option value="' + j[i].id + '">' + j[i].name + '</option>';
+						} 
+					} 
+					$("#attribute_sel").html(options);
+				},	
+				error: function(XMLHttpRequest, textStatus, errorThrown)
+				{
+					
+				}
+			});
+		};
 
+
+		this.deleteAttributeGroupValues = function(attrgroup_id) {
+			$.ajax({
+				url: 'ajax-tab.php',
+				cache: false,
+				dataType: 'json',
+				data: {
+					ajaxProductAttributevalues : "1",
+					ajax : '1',
+					token : token,
+					controller : 'AdminProducts',
+					action : 'deleteAttributeGroup',
+					group_id : attrgroup_id,
+					
+				},
+				success: function(j) 
+				{
+					var options='';
+					if (j) {
+						if(j.length==0) {
+							alert('No values');
+						}
+						for (var i = 0; i < j.length; i++) {
+							options += '<option value="' + j[i].id + '">' + j[i].name + '</option>';
+						} 
+					} 
+					$("#attribute_sel").html(options);
+				},	
+				error: function(XMLHttpRequest, textStatus, errorThrown)
+				{
+					
+				}
+			});
+		};
+
+		this.deleteAttributeValues = function(attr_id,g_id) {
+			$.ajax({
+				url: 'ajax-tab.php',
+				cache: false,
+				dataType: 'json',
+				data: {
+					ajaxProductAttributevalues : "1",
+					ajax : '1',
+					token : token,
+					controller : 'AdminProducts',
+					action : 'deleteAttributeValue',
+					group_id : g_id,
+					attr_id : attr_id
+					
+				},
+				success: function(j) 
+				{
+					var options='';
+					if (j) {
+						if(j.length==0) {
+							alert('No values');
+						}
+						for (var i = 0; i < j.length; i++) {
+							options += '<option value="' + j[i].id + '">' + j[i].name + '</option>';
+						} 
+					} 
+					$("#attr_values_sel").html(options);
 				},	
 				error: function(XMLHttpRequest, textStatus, errorThrown)
 				{
@@ -73,7 +152,17 @@ var self = this;
 				},
 				success: function(j) 
 				{
-
+					
+					var options='';
+					if (j) {
+						if(j.length==0) {
+							alert('No values');
+						}
+						for (var i = 0; i < j.length; i++) {
+							options += '<option value="' + j[i].id + '">' + j[i].name + '</option>';
+						} 
+					} 
+					$("#attr_values_sel").html(options);
 				},	
 				error: function(XMLHttpRequest, textStatus, errorThrown)
 				{
@@ -143,6 +232,11 @@ var self = this;
 		
 	});
 
+	$('#attribute_remove_but').click(function() {
+		var g_id=$('#attribute_sel').val();
+		self.deleteAttributeGroupValues(g_id);
+	});
+
 	$('#attribute_add_but').click(function() {
 		if(!toggleattribute) {
 			toggleattribute=true;
@@ -152,6 +246,13 @@ var self = this;
 			$('#attribute_group_form').hide();
 		}
 	});
+
+	$('#value_remove_but').click(function() {
+		var g_id=$('#attribute_sel').val();
+		var a_id=$('#attr_values_sel').val();
+		self.deleteAttributeValues(a_id,g_id);
+	});
+
 	$('#value_add_but').click(function() {
 		if(!togglevalue) {
 			togglevalue=true;

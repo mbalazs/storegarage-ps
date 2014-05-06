@@ -1378,6 +1378,7 @@ class AdminProductsControllerCore extends AdminController
 			die(Tools::jsonEncode($result));
 	}
 
+
 	public function ajaxProcessDeleteProductAttribute()
 	{
 		if (!Combination::isFeatureActive())
@@ -2347,7 +2348,14 @@ class AdminProductsControllerCore extends AdminController
 						$obj->public_name[$this->context->language->id] = $public_name;
 						
 			$obj->add();
+			$attribute_group = AttributeGroup::getAttributesGroups($this->context->language->id);
+			if ($attribute_group) {
+				foreach ($attribute_group as $attr) {
+					$jsonArray[] = '{"id": "'.(int)$attr['id_attribute_group'].'", "name": "'.htmlspecialchars(trim($attr['name'])).'"}';
+				}
+			}
 		die('['.implode(',', $jsonArray).']');
+
 
 	}
 
@@ -2361,11 +2369,20 @@ public function ajaxProcessSaveAttributes() {
 						$obj->id_attribute_group =$attr_id;
 						$obj->name[$this->context->language->id] = $value;
 											
-			$obj->add();
+		$obj->add();
+
+		$attribute = Attribute::getAttributes($this->context->language->id, true);
+		if ($attribute)
+				foreach ($attribute as $attr) {
+					if($attr['id_attribute_group']==$attr_id)
+					$jsonArray[] = '{"id": "'.(int)$attr['id_attribute'].'", "name": "'.htmlspecialchars(trim($attr['name'])).'"}';
+				}
 		die('['.implode(',', $jsonArray).']');
 
 	}
+	/*
 public function SaveAttributeGroup() {
+	$jsonArray = array();
 			if(!Tools::isEmpty('name_1')) {			
 			$obj = new AttributeGroup();
 						$type=Tools::getValue('group_type');
@@ -2377,14 +2394,65 @@ public function SaveAttributeGroup() {
 						$obj->position = (!$position) ? AttributeGroup::getHigherPosition() + 1 : $position;
 
 			$obj->add();
+
+
+			$attribute_group = AttributeGroup::getAttributesGroups($this->context->language->id);
+			if ($attribute_group) {
+				foreach ($attribute_group as $attr) {
+					$jsonArray[] = '{"id": "'.(int)$attr['id_attribute_group'].'", "name": "'.htmlspecialchars(trim($attr['name'])).'"}';
+				}
 			
 		} else {
 			$this->errors[] = Tools::displayError('No name selected.');
+			die('['.implode(',', $jsonArray).']');
 		}
-		
+		die('['.implode(',', $jsonArray).']');
+	}
+*/
+
+
+	public function ajaxProcessDeleteAttributeGroup()
+	{
+		$jsonArray=array();
+		if (!Combination::isFeatureActive())
+			die('['.implode(',', $jsonArray).']');
+		$group_id=$_REQUEST['group_id'];
+		$obj = new AttributeGroup($group_id);
+		if(!$obj->delete()) {
+			$this->errors[] = Tools::displayError('Failed to delete attribute group.');
+		}
+		$attribute_group = AttributeGroup::getAttributesGroups($this->context->language->id);
+		if ($attribute_group) {
+			foreach ($attribute_group as $attr) {
+					
+					$jsonArray[] = '{"id": "'.(int)$attr['id_attribute_group'].'", "name": "'.htmlspecialchars(trim($attr['name'])).'"}';
+				}
+		}
+		die('['.implode(',', $jsonArray).']');
 	}
 
-
+	public function ajaxProcessDeleteAttributeValue()
+		{
+			$jsonArray=array();
+			if (!Combination::isFeatureActive())
+				die('['.implode(',', $jsonArray).']');
+			$attr_id=$_REQUEST['attr_id'];
+			$group_id=$_REQUEST['group_id'];
+			$obj = new Attribute($attr_id);
+			if(!$obj->delete()) {
+				$this->errors[] = Tools::displayError('Failed to delete attribute value.');
+			}
+			$jsonArray=array();
+			$attribute = Attribute::getAttributes($this->context->language->id, true);
+			if ($attribute) {
+				foreach ($attribute as $attr) {
+						if($attr['id_attribute_group']==$group_id)
+						$jsonArray[] = '{"id": "'.(int)$attr['id_attribute'].'", "name": "'.htmlspecialchars(trim($attr['name'])).'"}';
+					}
+					die('['.implode(',', $jsonArray).']');
+			}
+			
+	}
 
 	public function ajaxProcessProductAttributeValues()
 	{
