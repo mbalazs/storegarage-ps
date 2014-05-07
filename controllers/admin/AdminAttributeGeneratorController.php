@@ -131,7 +131,7 @@ class AdminAttributeGeneratorControllerCore extends AdminController
 				}
 				else
 					StockAvailable::synchronize($this->product->id);
-				Tools::redirectAdmin($this->context->link->getAdminLink('AdminProducts').'&id_product='.(int)Tools::getValue('id_product').'&addproduct&key_tab=Combinations&conf=4');
+				Tools::redirectAdmin($this->context->link->getAdminLink('AdminProducts').'&id_product='.(int)Tools::getValue('id_product').'&addproduct&key_tab=Inventory&conf=4');
 			}
 			else
 				$this->errors[] = Tools::displayError('Unable to initialize these parameters. A combination is missing or an object cannot be loaded.');
@@ -221,7 +221,7 @@ class AdminAttributeGeneratorControllerCore extends AdminController
 	public function initToolbar()
 	{
 		$this->toolbar_btn['back'] = array(
-			'href' => $this->context->link->getAdminLink('AdminProducts').'&id_product='.(int)Tools::getValue('id_product').'&addproduct&key_tab=Combinations',
+			'href' => $this->context->link->getAdminLink('AdminProducts').'&id_product='.(int)Tools::getValue('id_product').'&addproduct&key_tab=Inventory',
 			'desc' => $this->l('Back to the product')
 		);
 	}
