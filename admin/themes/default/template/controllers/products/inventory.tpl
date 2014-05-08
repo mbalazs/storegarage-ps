@@ -26,7 +26,9 @@
 
 
 <input type="hidden" name="submitted_tabs[]" value="Inventory" />
-<input type="checkbox" name="is_inventory" id="is_inventory" />{l s='This product has multiple options (eg. multiple sizes and colors'}
+{if isset($product->id) && !$product->is_virtual}
+<input type="checkbox" name="is_inventory" id="is_inventory" />{l s='This product has multiple options (eg. multiple sizes and colors)'}
+
 <div id="inv_div">
 <h4 >{l s='Attributes'}</h4>
 
@@ -37,7 +39,7 @@
 	<select name="attributes" id="attribute_sel" style="width: 140px;">
 	<option value="-1">{l s='Select an attribute'}</option>
 	{foreach from=$attributes_groups item=attr}
-	<option value="{$attr.id_attribute_group}">{$attr.name}</option>
+	<option value="{$attr.id_attribute_group}" iscolor="{$attr.is_color_group}">{$attr.name}</option>
 	{/foreach}
 	</select>
 	</td>
@@ -126,8 +128,6 @@
 		<fieldset id="fieldset_0">
 		<legend><img src="../img/admin/asterisk.gif" alt="Values" />Values</legend>
 									
-		
-		</div>
 		<div class="clear"></div>
 		<label>Value: </label>	
 		<div class="margin-form">
@@ -147,7 +147,7 @@
 		<div class="clear"></div>
 		</div>
 		<div class="clear"></div>
-		<div id="colorAttributeProperties" style="display:none;">
+		<div id="colorAttributeProperties">
 		<label>Color: </label>
 		<div class="margin-form">
 		<input type="color" size="33" data-hex="true" class="color mColorPickerInput" name="color" value="" />
@@ -175,7 +175,7 @@
 		</td>
 	</tr>
 </table>
-</div>
+
 
 
 <!------------------------------- ><!-->
@@ -186,9 +186,9 @@
 	var msg_combination_3 = '{l s='You can only add one combination per attribute type.'}';
 	var msg_new_combination = '{l s='New combination'}';
 </script>
-{count($attributes_groups)}
-{if isset($product->id) && !$product->is_virtual}
-	<input type="hidden" name="submitted_tabs[]" value="Combinations" />
+
+
+	
 	<script type="text/javascript">
 		var attrs = new Array();
 		var modifyattributegroup = "{l s='Modify this attribute combination.' js=1}";
@@ -441,4 +441,10 @@
 	</div>
 	
 	{$list}
+
+		
+
+
+</div>		
 {/if}
+

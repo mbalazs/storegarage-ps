@@ -3603,14 +3603,16 @@ public function SaveAttributeGroup() {
 
 	public function initFormInventory($product) {
 		$data = $this->createTemplate($this->tpl_form);
-		$attributes_groups = AttributeGroup::getAttributesGroups($this->context->language->id);
-		$attributes = Attribute::getAttributes($this->context->language->id, true);
-		$data->assign('attributes',$attributes);
-	//	$data->assign('attributes_groups',$attributes_groups);
-	//	$this->tpl_form_vars['custom_form'] = $data->fetch();
-		/////
-		//$data = $this->createTemplate($this->tpl_form);
+
 		if (!Combination::isFeatureActive()) {
+			$attributes_groups = AttributeGroup::getAttributesGroups($this->context->language->id);
+			$attributes = Attribute::getAttributes($this->context->language->id, true);
+			$data->assign('attributes',$attributes);
+		//	$data->assign('attributes_groups',$attributes_groups);
+		//	$this->tpl_form_vars['custom_form'] = $data->fetch();
+			/////
+			//$data = $this->createTemplate($this->tpl_form);
+		
 			$this->displayWarning($this->l('This feature has been disabled. ').
 				' <a href="index.php?tab=AdminPerformance&token='.Tools::getAdminTokenLite('AdminPerformance').'#featuresDetachables">'.$this->l('Performances').'</a>');
 		}
@@ -3677,7 +3679,7 @@ public function SaveAttributeGroup() {
 			$data->assign('product', $product);
 			$this->displayWarning($this->l('You must save this product before adding combinations.'));
 		}
-
+			
 		$data->assign('product', $product);
 	$this->tpl_form_vars['custom_form'] = $data->fetch();
 		

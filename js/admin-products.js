@@ -30,6 +30,9 @@ product_tabs['Inventory'] = new function(){
 var options;
 var self = this;
 
+
+
+
 		this.saveAttributeGroupValues = function(attrgroup_name,attrgroup_public_name,attrgroup_type) {
 			$.ajax({
 				url: 'ajax-tab.php',
@@ -257,6 +260,13 @@ var self = this;
 		if(!togglevalue) {
 			togglevalue=true;
 			$('#attribute_form').show();
+			var option = $('#attribute_sel :selected');
+		
+			if(option.attr('iscolor')=='1') {
+				$('#colorAttributeProperties').show();
+			} else {
+				$('#colorAttributeProperties').hide();
+			}
 		} else {
 			togglevalue=false;
 			$('#attribute_form').hide();
