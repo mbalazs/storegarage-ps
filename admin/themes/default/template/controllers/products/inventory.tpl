@@ -150,7 +150,7 @@
 		<div id="colorAttributeProperties">
 		<label>Color: </label>
 		<div class="margin-form">
-		<input type="color" size="33" data-hex="true" class="color mColorPickerInput" name="color" value="" />
+		<input type="color" size="33" id="attr_color" data-hex="true" class="color mColorPickerInput" name="color" value="" />
 		<p class="preference_description">Choose a color with the color picker, or enter an HTML color (e.g. &quot;lightblue&quot;, &quot;#CC6600&quot;)</p>
 		</div>
 		<div class="clear"></div>

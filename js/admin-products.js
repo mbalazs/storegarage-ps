@@ -120,16 +120,15 @@ var self = this;
 				},
 				success: function(j) 
 				{
-					var options='';
+				
 					if (j) {
 						if(j.length==0) {
 							alert('No values');
+						} else {
+							buildSelectValueOptions(j);
 						}
-						for (var i = 0; i < j.length; i++) {
-							options += '<option value="' + j[i].id + '">' + j[i].name + '</option>';
-						} 
-					} 
-					$("#attr_values_sel").html(options);
+					}
+					
 				},	
 				error: function(XMLHttpRequest, textStatus, errorThrown)
 				{
@@ -138,7 +137,46 @@ var self = this;
 			});
 		};
 		
-		this.saveAttributeValues = function(attr_id,attr_value) {
+		this.saveAttributeValues = function(attr_id,attr_value,iscolor,color) {
+			$.ajax({
+				url: 'ajax-tab.php',
+				cache: false,
+				dataType: 'json',
+				data: {
+					ajaxProductAttributevalues : "1",
+					ajax : '1',
+					token : token,
+					controller : 'AdminProducts',
+					action : 'saveAttributes',
+					attr_id : attr_id,
+					attr_value : attr_value,
+					color : color,
+					iscolor : iscolor
+
+					
+				},
+				success: function(j) 
+				{
+					
+					
+					if (j) {
+						if(j.length==0) {
+							alert('No values');
+						} else {
+							buildSelectValueOptions(j);
+						}
+					}
+						
+				},	
+				error: function(XMLHttpRequest, textStatus, errorThrown)
+				{
+					
+				}
+			});
+		};
+
+
+			this.getUpdateGroups = function(attr_id,attr_value) {
 			$.ajax({
 				url: 'ajax-tab.php',
 				cache: false,
@@ -156,16 +194,14 @@ var self = this;
 				success: function(j) 
 				{
 					
-					var options='';
+					
 					if (j) {
 						if(j.length==0) {
 							alert('No values');
+						} else {
+							buildSelectValueOptions(j);
 						}
-						for (var i = 0; i < j.length; i++) {
-							options += '<option value="' + j[i].id + '">' + j[i].name + '</option>';
-						} 
-					} 
-					$("#attr_values_sel").html(options);
+					}
 				},	
 				error: function(XMLHttpRequest, textStatus, errorThrown)
 				{
@@ -173,6 +209,17 @@ var self = this;
 				}
 			});
 		};
+
+		buildSelectValueOptions = function(j) {
+			var options = '';
+			for (var i = 0; i < j.length; i++) {
+							options += '<option value="' + j[i].id + '" value2='+ j[i].color +'">' + j[i].name + '</option>';
+						} 
+
+			$("#values_table").show();		
+			$('#attribute_form').hide();
+			$("#attr_values_sel").html(options);
+		}
 
 		this.getAttributeValues = function(g_id){
 		$.ajax({
@@ -188,21 +235,20 @@ var self = this;
 					group_id : g_id
 				},
 				success: function(j) {
-					var options='';
-					$('#values_table').show();
+					
+					
 					if (j) {
 						if(j.length==0) {
 							alert('No values');
+						} else {
+							buildSelectValueOptions(j);
 						}
-						for (var i = 0; i < j.length; i++) {
-							options += '<option value="' + j[i].optionValue + '">' + j[i].optionDisplay + '</option>';
-						} 
-					} 
-					$("#attr_values_sel").html(options);
+					}
+						
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown)
 				{
-					$('#values_table').hide();
+					
 					$("inv_errortext").replaceWith("<p id=\"inv_errortext\">[TECHNICAL ERROR] ajaxgetAttributes: "+textStatus+"</p>");
 				}
 		});
@@ -213,8 +259,8 @@ var self = this;
 	$('#values_table').hide();
 	$('#attribute_group_form').hide();
 	$('#attribute_form').hide();
-	toggleattribute=false;
-	togglevalue=false;
+	var toggleattribute=false;
+	var togglevalue=false;
 
 	$('#attrgroupsub').click(function() {
 		var attrgroup_name =  $('#attrgroup_name').val();
@@ -230,8 +276,10 @@ var self = this;
 	$('#attrsub').click(function() {
 		var attr_id =  $('#attribute_sel').val();
 		var attr_value = $('#attr_name').val();
+		var iscolor=$('#attribute_sel :selected').attr('iscolor');
+		var color = $('#attr_color').val();
 		$('#attr_name').val('');
-		self.saveAttributeValues(attr_id,attr_value); 
+		self.saveAttributeValues(attr_id,attr_value,iscolor,color); 
 		
 	});
 
@@ -253,6 +301,7 @@ var self = this;
 	$('#value_remove_but').click(function() {
 		var g_id=$('#attribute_sel').val();
 		var a_id=$('#attr_values_sel').val();
+		
 		self.deleteAttributeValues(a_id,g_id);
 	});
 
@@ -276,6 +325,11 @@ var self = this;
 		if($(this.options[0]).val()==-1) {
 			$(this.options[0]).hide();
 		}
+		toggleattribute=false;
+		togglevalue=false;
+		$('#attribute_form').hide();
+		$('#attribute_group_form').hide();
+
 		 var option = this.options[this.selectedIndex].innerHTML;
 		 self.getAttributeValues($(this.options[this.selectedIndex]).val());
     });

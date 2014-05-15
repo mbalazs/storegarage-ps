@@ -2341,12 +2341,12 @@ class AdminProductsControllerCore extends AdminController
 		$name = $_REQUEST['attrgroup_name'];
 		$public_name = $_REQUEST['attrgroup_public_name'];
 		$type = $_REQUEST['attrgroup_type'];
-		
+	
 		$obj = new AttributeGroup();
 						$obj->group_type =$type;
 						$obj->name[$this->context->language->id] = $name;
 						$obj->public_name[$this->context->language->id] = $public_name;
-						
+
 			$obj->add();
 			$attribute_group = AttributeGroup::getAttributesGroups($this->context->language->id);
 			if ($attribute_group) {
@@ -2364,11 +2364,14 @@ public function ajaxProcessSaveAttributes() {
 		$jsonArray = array();
 		$attr_id = $_REQUEST['attr_id'];
 		$value = $_REQUEST['attr_value'];
-	
+		$color = $_REQUEST['color'];
+		$iscolor = $_REQUEST['iscolor'];
 		$obj = new Attribute();
 						$obj->id_attribute_group =$attr_id;
 						$obj->name[$this->context->language->id] = $value;
-											
+		if($iscolor) {
+			$obj->color=$color;
+		}									
 		$obj->add();
 
 		$attribute = Attribute::getAttributes($this->context->language->id, true);
@@ -2453,18 +2456,31 @@ public function SaveAttributeGroup() {
 			}
 			
 	}
+	public function compareAttributes($group_id) {
+		$jsonArray = array();
+		$attribute = AttributeGroup::getAttributes($this->context->language->id, $group_id);
+		$attributes_groups = AttributeGroup::getAttributesGroups($this->context->language->id);
+			foreach ($attributes_groups as $attrgroup) {
+				if($attrgroup['id_attribute_group']==$group_id) {
+					$color=$attrgroup['is_color_group'];
+				}
+			}
 
+		if ($attribute)
+				foreach ($attribute as $attr) {
+				
+					$jsonArray[] = '{"id": "'.(int)$attr['id_attribute'].'", "name": "'.htmlspecialchars(trim($attr['name'])).'", "color": "'.$color.'"}';
+		}
+		die('['.implode(',', $jsonArray).']');
+		
+	}
 	public function ajaxProcessProductAttributeValues()
 	{
 		$group_id=$_REQUEST['group_id'];
-		$attribute = Attribute::getAttributes($this->context->language->id, true);
-		$jsonArray = array();
-			if ($attribute)
-				foreach ($attribute as $attr) {
-					if($attr['id_attribute_group']==$group_id)
-					$jsonArray[] = '{"optionValue": "'.(int)$attr['id_attribute'].'", "optionDisplay": "'.htmlspecialchars(trim($attr['name'])).'"}';
-				}
-				die('['.implode(',', $jsonArray).']');
+		//$attribute = Attribute::getAttributes($this->context->language->id, true);
+		
+		$this->compareAttributes($group_id);
+		
 	}
 
 	/**
